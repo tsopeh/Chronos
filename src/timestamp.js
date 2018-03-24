@@ -1,7 +1,7 @@
-export class Timestamp {
-        constructor(url, time, dateCreated, note) {
+class Timestamp {
+        constructor(url, currentPlayTime, dateCreated, note) {
                 this.url = url;
-                this.time = time;
+                this.currentPlayTime = currentPlayTime;
                 this.dateCreated = dateCreated;
                 this.note = note;
         }
