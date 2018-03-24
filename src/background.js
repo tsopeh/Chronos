@@ -1,8 +1,9 @@
-console.log("Background radi");
-let test2 = new Timestamp("kektus",4,5,"msg");
-console.log(test2);
+//const browser = window.browser || window.chrome;
 
-// chrome.browserAction.onClicked.addListener((tab) => {
+console.log("Background radi");
+
+
+// chrome.chromeAction.onClicked.addListener((tab) => {
 //         console.log("Clicked on: ",tab);
 //         let msg = {
 //                 txt: "hello",
@@ -11,11 +12,17 @@ console.log(test2);
 //         chrome.tabs.sendMessage(tab.id, msg)
 // });
 
-chrome.commands.onCommand.addListener((command,id) => {
-        console.log('Command:', command,id);
-        let msg = {
-                txt: "Increment playback rate.",
-                cmd: "incrementPlaybackRate"
-        }
-        chrome.tabs.sendMessage(msg)
+chrome.commands.onCommand.addListener((command) => {
+	console.log('Command:', command);
+	chrome.tabs.query({
+		active: true,
+		currentWindow: true
+	}, (tabs) => {
+		let msg = {
+			cmd: command.toString()
+		}
+		chrome.tabs.sendMessage(tabs[0].id, msg)
+	});
 });
+
+
