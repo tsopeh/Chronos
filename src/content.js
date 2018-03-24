@@ -1,4 +1,4 @@
-//import { Timestamp } from "./timestamp.js";
+
 
 console.log("Content radi");
 
@@ -17,7 +17,15 @@ function incrementPlaybackRate() {
 function decrementPlaybackRate() {
 	mediaElements.forEach((element) => element.playbackRate -= 0.25);
 }
+function setMarker(){
 
+}
 chrome.runtime.onMessage.addListener(function (msg) {
 	this[msg.cmd]();
 });
+
+
+
+this.addEventListener('readystatechange', function() {
+	console.log("radiiiiiiiii");
+}, false);

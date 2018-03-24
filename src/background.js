@@ -13,7 +13,7 @@ console.log("Background radi");
 // });
 
 chrome.commands.onCommand.addListener((command) => {
-	console.log('Command:', command);
+	//console.log('Command:', command);
 	chrome.tabs.query({
 		active: true,
 		currentWindow: true
