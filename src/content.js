@@ -1,5 +1,3 @@
-
-
 console.log("Content radi");
 
 let mediaElements = [];
@@ -17,15 +15,23 @@ function incrementPlaybackRate() {
 function decrementPlaybackRate() {
 	mediaElements.forEach((element) => element.playbackRate -= 0.25);
 }
-function setMarker(){
 
-}
+function setMarker() {}
+
 chrome.runtime.onMessage.addListener(function (msg) {
 	this[msg.cmd]();
 });
 
 
 
-this.addEventListener('readystatechange', function() {
-	console.log("radiiiiiiiii");
-}, false);
+// this.addEventListener('readystatechange', function() {
+// 	console.log("radiiiiiiiii");
+// }, false);
+
+
+let timestamp = new URL(this.location.href).searchParams.get("chronosTimeStamp");
+if ( timestamp != null) {
+	mediaElements.forEach((element) => element.currentTime = parseInt(timestamp));
+}
+
+

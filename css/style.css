@@ -30,7 +30,36 @@ footer {
         text-decoration: none;
 }
 
-.marker{
+footer div {
+        margin-left: 20px;
+}
+
+footer div a {
+        text-decoration: none;
+}
+
+footer div a:visited {
+        color: black;
+}
+
+footer div a:hover {
+        color: white;
+}
+
+.marker {
         border: 1px solid teal;
         margin: 15px;
+        padding: 5px;
+}
+
+.marker div {
+        margin: 5px;
+}
+
+.marker div a:visited {
+        color: blue;
+}
+
+.del {
+        float: right;
 }

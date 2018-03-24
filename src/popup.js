@@ -22,15 +22,20 @@ fetch("http://localhost:3000/markers")
                 // marker.appendChild(id);
                 // id.innerHTML = element.id;
 
+                const del = document.createElement("div");
+                marker.appendChild(del);
+                del.className += " del";
+                del.innerHTML = "X";
+
                 const url = document.createElement("div");
                 marker.appendChild(url);
-                url.innerHTML = `<a href="${element.url}">${element.note}</a>` ;
+                url.innerHTML = `Note: <a href="${element.url}&chronosTimeStamp=${element.currentPlayTime}">${element.note}</a>` ;
 
                 const currentPlayTime = document.createElement("div");
                 marker.appendChild(currentPlayTime);
-                currentPlayTime.innerHTML = element.currentPlayTime;
+                currentPlayTime.innerHTML = `Timestamp: ${element.currentPlayTime} sec`;
 
                 const dateCreated = document.createElement("div");
                 marker.appendChild(dateCreated);
-                dateCreated.innerHTML = element.dateCreated;
+                dateCreated.innerHTML = `Date of creation: ${element.dateCreated}`
         })));
