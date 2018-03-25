@@ -16,9 +16,18 @@
 	}],
 	"browser_action": {
 		"browser_style": true,
-		"default_icon": "./img/chronos_icon.png",
+		"default_icon": "./img/chronos_icon_light.png",
+		"theme_icons": [{
+			"light": "./img/chronos_icon_light.png",
+			"dark": "./img/chronos_icon_dark.png",
+			"size": 16
+		      }, {
+			"light": "./img/chronos_icon_light.png",
+			"dark": "./img/chronos_icon_dark.png",
+			"size": 32
+		      }],
 		"default_popup": "./popup.html",
-		"default_title": "Chronos extension"
+		"default_title": "Chronos extension: Speed up - ALT + 'L' | Slow down - ALT + 'J' | Place marker - ALT + 'K'"
 	},
 	"commands": {
 		"incrementPlaybackRate": {

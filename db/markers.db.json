@@ -1,46 +1,18 @@
 {
-        "markers": [{
-                        "id": "1",
-                        "url": "https://www.youtube.com/watch?v=4jEEk41W3DY",
-                        "currentPlayTime": "483",
-                        "dateCreated": "test",
-                        "note": "Everything GREAT About Scott Pilgrim vs The World! (Part 1)"
-                },
-                {
-                        "id": "2",
-                        "url": "https://www.youtube.com/watch?v=6gosKBLpNg0",
-                        "currentPlayTime": "222",
-                        "dateCreated": "test",
-                        "note": "Everything GREAT About Scott Pilgrim vs The World! (Part 2)"
-                },
-                {
-                        "id": "3",
-                        "url": "https://www.youtube.com/watch?v=4jEEk41W3DY",
-                        "currentPlayTime": "483",
-                        "dateCreated": "test",
-                        "note": "Everything GREAT About Scott Pilgrim vs The World! (Part 3)"
-                },
-                {
-                        "id": "4",
-                        "url": "https://www.youtube.com/watch?v=6gosKBLpNg0",
-                        "currentPlayTime": "222",
-                        "dateCreated": "test",
-                        "note": "Everything GREAT About Scott Pilgrim vs The World! (Part 4)"
-                },
-                {
-                        "id": "5",
-                        "url": "https://www.youtube.com/watch?v=4jEEk41W3DY",
-                        "currentPlayTime": "483",
-                        "dateCreated": "test",
-                        "note": "Everything GREAT About Scott Pilgrim vs The World! (Part 5)"
-                },
-                {
-                        "id": "6",
-                        "url": "https://www.youtube.com/watch?v=6gosKBLpNg0",
-                        "currentPlayTime": "222",
-                        "dateCreated": "test",
-                        "note": "Everything GREAT About Scott Pilgrim vs The World! (Part 6)"
-                }
-
-        ]
+  "markers": [
+    {
+      "url": "https://www.youtube.com/watch?v=tdeueWbTr3s&21",
+      "currentPlayTime": "21",
+      "dateCreated": "Sun Mar 25 2018 16:09:36 GMT+0200 (CEST)",
+      "note": "Guess I'm going to jail... - YouTube",
+      "id": 1
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=tdeueWbTr3s&21",
+      "currentPlayTime": "21",
+      "dateCreated": "Sun Mar 25 2018 16:09:37 GMT+0200 (CEST)",
+      "note": "Guess I'm going to jail... - YouTube",
+      "id": 3
+    }
+  ]
 }

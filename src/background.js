@@ -18,9 +18,10 @@ chrome.commands.onCommand.addListener((command) => {
 		active: true,
 		currentWindow: true
 	}, (tabs) => {
-		let msg = {
+		const msg = {
 			cmd: command.toString()
 		}
+		console.log(command);
 		chrome.tabs.sendMessage(tabs[0].id, msg)
 	});
 });
