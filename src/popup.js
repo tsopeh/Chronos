@@ -3,15 +3,6 @@
 const content = document.getElementById("content");
 const main = document.querySelector("article");
 
-// ((main) => {
-//         return fetch("http://localhost:3000/movies")
-//                 .then(response => {
-//                         console.log(response);
-//                         return response;
-//                 })
-
-// })(main);
-
 fetch("http://localhost:3000/markers")
         .then(response => response.json().then((response) => response.reverse().forEach(element => {
 

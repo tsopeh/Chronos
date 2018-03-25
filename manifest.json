@@ -4,15 +4,15 @@
 	"name": "Chronos",
 	"version": "0.1",
 	"description": "Video/Audio playback speed regulator and timestamp marker.",
-	"permissions": ["storage", "activeTab", "tabs",
-		"contextMenus"],
+	"permissions": ["tabs", "activeTab", "webNavigation", "*://*/*"],
 	"background": {
 		"scripts": ["./src/timestamp.js", "./src/background.js"]
-		
+
 	},
 	"content_scripts": [{
+		"run_at": "document_idle",
 		"matches": ["<all_urls>"],
-		"js": ["./src/timestamp.js", "./src/content.js"]
+		"js": ["./src/timestamp.js", "./src/contentscript.js"]
 	}],
 	"browser_action": {
 		"browser_style": true,
@@ -21,15 +21,22 @@
 			"light": "./img/chronos_icon_light.png",
 			"dark": "./img/chronos_icon_dark.png",
 			"size": 16
-		      }, {
+		}, {
 			"light": "./img/chronos_icon_light.png",
 			"dark": "./img/chronos_icon_dark.png",
 			"size": 32
-		      }],
+		}],
 		"default_popup": "./popup.html",
 		"default_title": "Chronos extension: Speed up - ALT + 'L' | Slow down - ALT + 'J' | Place marker - ALT + 'K'"
 	},
 	"commands": {
+		"_execute_rowser_action:": {
+			"suggested_key": {
+				"default": "Alt+C",
+				"mac": "Alt+C"
+			},
+			"description": "Wake up Chronos."
+		},
 		"incrementPlaybackRate": {
 			"suggested_key": {
 				"default": "Alt+L",
@@ -49,7 +56,7 @@
 				"default": "Alt+K",
 				"mac": "Alt+K"
 			},
-			"description": "Create timestamp."
+			"description": "Create timestamp marker."
 		}
 	}
 }
