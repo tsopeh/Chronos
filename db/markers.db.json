@@ -1,46 +1,32 @@
 {
   "markers": [
     {
-      "url": "https://www.youtube.com/watch?v=S5TnPjOd_To",
-      "currentPlayTime": "2",
-      "dateCreated": "Sun Mar 25 2018 18:14:57 GMT+0200 (CEST)",
-      "note": "Metallica - Wherever I May Roam - YouTube",
+      "url": "http://hiddenlol.com/lol/230634",
+      "currentPlayTime": "7",
+      "dateCreated": "27/03/2018",
+      "note": "Male fantasy",
+      "id": 1
+    },
+    {
+      "url": "http://hiddenlol.com/lol/230634?&chronosTimesmp=7?&7?",
+      "currentPlayTime": "10",
+      "dateCreated": "27/03/2018",
+      "note": "Male fantasy",
+      "id": 2
+    },
+    {
+      "url": "http://protok.rs/epizoda-1-bitcoin-kada-kazes-kriptovaluta-na-sta-tacno-mislis/",
+      "currentPlayTime": "1318",
+      "dateCreated": "27/03/2018",
+      "note": "Epizoda #1: Bitcoin - kada kažeš kriptovaluta, na šta tačno misliš? - Protok",
       "id": 3
     },
     {
-      "url": "https://www.youtube.com/watch?v=RYkU8WGsIKo",
-      "currentPlayTime": "12",
-      "dateCreated": "25/03/2018",
-      "note": "The Economics of Unboxing Videos - YouTube",
+      "url": "https://www.youtube.com/watch?v=tEtubWHz9sw",
+      "currentPlayTime": "2",
+      "dateCreated": "27/03/2018",
+      "note": "How To Handle Large Files In Git - YouTube",
       "id": 4
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=RYkU8WGsIKo",
-      "currentPlayTime": "12",
-      "dateCreated": "25/03/2018",
-      "note": "The Economics of Unboxing Videos - YouTube",
-      "id": 5
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=RYkU8WGsIKo",
-      "currentPlayTime": "12",
-      "dateCreated": "25/03/2018",
-      "note": "The Economics of Unboxing Videos - YouTube",
-      "id": 6
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=cn3hRA6UzSo",
-      "currentPlayTime": "11",
-      "dateCreated": "25/03/2018",
-      "note": "24 minuta sa Zoranom Kesićem - 131. epizoda (24. mart 2018.) - YouTube",
-      "id": 7
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=cn3hRA6UzSo&11",
-      "currentPlayTime": "23",
-      "dateCreated": "25/03/2018",
-      "note": "24 minuta sa Zoranom Kesićem - 131. epizoda (24. mart 2018.) - YouTube",
-      "id": 8
     }
   ]
 }

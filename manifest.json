@@ -30,12 +30,12 @@
 		"default_title": "Chronos extension: Speed up - ALT + 'L' | Slow down - ALT + 'J' | Place marker - ALT + 'K'"
 	},
 	"commands": {
-		"_execute_rowser_action:": {
+		"resetPlaybackRate": {
 			"suggested_key": {
-				"default": "Alt+C",
-				"mac": "Alt+C"
+				"default": "Alt+R",
+				"mac": "Alt+R"
 			},
-			"description": "Wake up Chronos."
+			"description": "Reset playback rate."
 		},
 		"incrementPlaybackRate": {
 			"suggested_key": {

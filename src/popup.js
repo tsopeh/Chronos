@@ -34,7 +34,7 @@ fetch("http://localhost:3000/markers")
 
                 const url = document.createElement("div");
                 marker.appendChild(url);
-                url.innerHTML = `Note: <a href="${element.url}&chronosTimestamp=${element.currentPlayTime}">${element.note}</a>`;
+                url.innerHTML = `Note: <a href="${element.url}?&chronosTimestamp=${element.currentPlayTime}">${element.note}</a>`;
 
                 const currentPlayTime = document.createElement("div");
                 marker.appendChild(currentPlayTime);
