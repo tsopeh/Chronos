@@ -2,17 +2,17 @@
 
 	"manifest_version": 2,
 	"name": "Chronos",
-	"version": "0.1",
-	"description": "Video/Audio playback speed regulator and timestamp marker.",
+	"version": "1.0",
+	"description": "Video/Audio playback speed regulator.",
 	"permissions": ["tabs", "activeTab", "webNavigation", "*://*/*"],
 	"background": {
-		"scripts": ["./src/timestamp.js", "./src/background.js"]
+		"scripts": ["./src/background.js"]
 
 	},
 	"content_scripts": [{
 		"run_at": "document_idle",
 		"matches": ["<all_urls>"],
-		"js": ["./src/timestamp.js", "./src/contentscript.js"]
+		"js": ["./src/contentscript.js"]
 	}],
 	"browser_action": {
 		"browser_style": true,
@@ -27,36 +27,15 @@
 			"size": 32
 		}],
 		"default_popup": "./popup.html",
-		"default_title": "Chronos extension: Speed up - ALT + 'L' | Slow down - ALT + 'J' | Place marker - ALT + 'K'"
+		"default_title": "Chronos extension"
 	},
 	"commands": {
-		"resetPlaybackRate": {
-			"suggested_key": {
-				"default": "Alt+R",
-				"mac": "Alt+R"
-			},
-			"description": "Reset playback rate."
-		},
-		"incrementPlaybackRate": {
-			"suggested_key": {
-				"default": "Alt+L",
-				"mac": "Alt+L"
-			},
-			"description": "Increase playback rate by 0.25."
-		},
-		"decrementPlaybackRate": {
-			"suggested_key": {
-				"default": "Alt+J",
-				"mac": "Alt+J"
-			},
-			"description": "Decrease playback rate by 0.25."
-		},
 		"setMarker": {
 			"suggested_key": {
 				"default": "Alt+K",
 				"mac": "Alt+K"
 			},
-			"description": "Create timestamp marker."
+			"description": "Create timestamp marker. NOOO lel"
 		}
 	}
 }
