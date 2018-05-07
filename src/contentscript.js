@@ -15,8 +15,8 @@ function displayMsg(msg) {
 	flashMsg.style.fontWeight = "bolder";
 	flashMsg.style.fontSize = "2vw";
 	flashMsg.style.right = "2vw";
-	flashMsg.style.padding = "1.5vw";
-	flashMsg.style.backgroundColor = "rgba(0, 0, 0, 0.900)";
+	flashMsg.style.padding = "0.5vw";
+	flashMsg.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
 	flashMsg.style.zIndex = "99999999999999999999999999999"; //better solution
 	flashMsg.style.color = "teal";
 	flashMsg.innerHTML = `${msg}`;
@@ -54,10 +54,12 @@ function backward10sec(mediaElements) {
 	displayMsg(`-10`);
 }
 
-// chrome.runtime.onMessage.addListener(function (msg) {
-// 	this[msg.cmd](fetchAllMediaContent().reverse());
-// 	console.log(msg.cmd);
-// });
+function togglePlayPause(mediaElements) {
+	mediaElements.forEach((element) => {
+		element.paused ? element.play() : element.pause();
+	});
+	displayMsg(`⏯`);
+}
 
 window.addEventListener("keyup", e => {
 	if (e.altKey) {
@@ -71,7 +73,7 @@ window.addEventListener("keyup", e => {
 			case "k":
 				{
 					const mediaElements = fetchAllMediaContent().reverse();
-					setMarker(mediaElements);
+					togglePlayPause(mediaElements);
 					break;
 				}
 			case "h":

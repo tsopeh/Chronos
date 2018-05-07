@@ -1,10 +1,9 @@
 {
-
 	"manifest_version": 2,
 	"name": "Chronos",
 	"version": "1.0",
-	"description": "Video/Audio playback speed regulator.",
-	"permissions": ["tabs", "activeTab", "webNavigation", "*://*/*"],
+	"description": "Video/Audio playback rate regulator.",
+	"permissions": ["tabs", "activeTab", "*://*/*"],
 	"background": {
 		"scripts": ["./src/background.js"]
 
@@ -17,6 +16,11 @@
 	"browser_action": {
 		"browser_style": true,
 		"default_icon": "./img/chronos_icon_light.png",
+		"icons": {
+			"16": "./img/chronos_icon_light.png",
+			"48": "./img/chronos_icon_light.png",
+			"128": "./img/chronos_icon_light.png"
+		},
 		"theme_icons": [{
 			"light": "./img/chronos_icon_light.png",
 			"dark": "./img/chronos_icon_dark.png",
@@ -25,17 +29,16 @@
 			"light": "./img/chronos_icon_light.png",
 			"dark": "./img/chronos_icon_dark.png",
 			"size": 32
+		}, {
+			"light": "./img/chronos_icon_light.png",
+			"dark": "./img/chronos_icon_dark.png",
+			"size": 48
+		}, {
+			"light": "./img/chronos_icon_light.png",
+			"dark": "./img/chronos_icon_dark.png",
+			"size": 128
 		}],
 		"default_popup": "./popup.html",
 		"default_title": "Chronos extension"
-	},
-	"commands": {
-		"setMarker": {
-			"suggested_key": {
-				"default": "Alt+K",
-				"mac": "Alt+K"
-			},
-			"description": "Create timestamp marker. NOOO lel"
-		}
 	}
 }
