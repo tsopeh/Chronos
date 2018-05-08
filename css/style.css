@@ -4,6 +4,14 @@ body {
         font-size: 5vh;
 }
 
+a:link, a:visited {
+        color: black;
+        text-decoration: none;
+}
+a:hover{
+        color: #ffffff;
+}
+
 header {
         width: 100vw;
         height: 10vh;
@@ -16,6 +24,14 @@ article {
 
 article h1{
         margin-left: 5vw;
+}
+
+.credits {
+        width: 100vw;
+        height: 7vh;
+        font-size: 4vh;
+        margin-left: 15vw;
+
 }
 
 footer {
@@ -31,15 +47,6 @@ footer div {
         margin-left: 5vw;
 }
 
-footer div a {
-        text-decoration: none;
-        color: #DE434E;
-}
-
-footer div a:visited {
-        color: black;
-}
-
-footer div a:hover {
-        color: white;
+.love a:link, a:visited{
+        color: #ffffff;  
 }
