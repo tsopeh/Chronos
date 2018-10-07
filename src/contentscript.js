@@ -4,12 +4,12 @@ const PLAYBACK_RATE_INCREMENT = 0.25;
 const DEFAULT_PLAYBACK_VALUE = 1;
 const PLAYBACK_SEEK_INCREMENT = 10;
 const TEXTBOX_TIMEOUT = 1000;
-const DECREMENT_PLAYBACK_RATE_KEY = "[";
-const INCREMENT_PLAYBACK_RATE_KEY = "]";
-const SEEK_BACKWARD_KEY = "u";
-const TOGGLE_PLAY_PAUSE_KEY = "i";
-const SEEK_FORWARD_KEY = "o";
-const RESET_PLAYBACK_RATE_KEY = "r";
+const DECREMENT_PLAYBACK_RATE_KEY = "BracketLeft";
+const INCREMENT_PLAYBACK_RATE_KEY = "BracketRight";
+const SEEK_BACKWARD_KEY = "KeyU";
+const TOGGLE_PLAY_PAUSE_KEY = "KeyI";
+const SEEK_FORWARD_KEY = "KeyO";
+const RESET_PLAYBACK_RATE_KEY = "KeyR";
 
 function fetchAllMediaContent() {
   const mediaElements = [];
@@ -87,7 +87,7 @@ function executeCommandOnAllMediaElements(command){
 document.addEventListener("keydown", event => {
   const isInputElementFocused = document.activeElement instanceof HTMLInputElement;
   if (!isInputElementFocused) {
-    switch (event.key) {
+    switch (event.code) {
       case DECREMENT_PLAYBACK_RATE_KEY: {
         executeCommandOnAllMediaElements(decrementPlaybackRate)
         break;
