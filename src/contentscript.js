@@ -1,106 +1,117 @@
+const N_A_MSG = "N/A";
+const PLAY_SYMBOL = "⏯";
+const PLAYBACK_RATE_INCREMENT = 0.25;
+const DEFAULT_PLAYBACK_VALUE = 1;
+const PLAYBACK_SEEK_INCREMENT = 10;
+const TEXTBOX_TIMEOUT = 1000;
+const DECREMENT_PLAYBACK_RATE_KEY = "[";
+const INCREMENT_PLAYBACK_RATE_KEY = "]";
+const SEEK_BACKWARD_KEY = "u";
+const TOGGLE_PLAY_PAUSE_KEY = "i";
+const SEEK_FORWARD_KEY = "o";
+const RESET_PLAYBACK_RATE_KEY = "r";
+
 function fetchAllMediaContent() {
-	let tmpMediaElements = [];
-	tmpMediaElements.push(document.querySelectorAll("audio"));
-	tmpMediaElements.push(document.querySelectorAll("video"));
-	tmpMediaElements = [...tmpMediaElements[0], ...tmpMediaElements[1]];
-	console.log(`Chronos found: ${tmpMediaElements}`);
-	return tmpMediaElements;
+  const mediaElements = [];
+  mediaElements.push(...document.body.querySelectorAll("video"), ...document.body.querySelectorAll("audio"));
+  console.log(`Chronos found: `, mediaElements);
+  return mediaElements;
 }
 
-function displayMsg(msg) {
-	const flashMsg = document.createElement("div");
-	document.body.appendChild(flashMsg);
-	flashMsg.style.position = "fixed";
-	flashMsg.style.top = "2vw";
-	flashMsg.style.fontWeight = "bolder";
-	flashMsg.style.fontSize = "2vw";
-	flashMsg.style.right = "2vw";
-	flashMsg.style.padding = "0.5vw";
-	flashMsg.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
-	flashMsg.style.zIndex = "99999999999999999999999999999"; //better solution
-	flashMsg.style.color = "teal";
-	flashMsg.innerHTML = `${msg}`;
-	setTimeout(() => document.body.removeChild(flashMsg), 1000);
+function displayMsgBox(msg) {
+  const msgBox = createMessageBox(msg);
+  document.body.appendChild(msgBox);
+  removeMsgBox(msgBox, TEXTBOX_TIMEOUT);
+}
+
+function removeMsgBox(msgBox, timeout) {
+  setTimeout(() => document.body.removeChild(msgBox), timeout);
+}
+
+function createMessageBox(msgText) {
+  const msgBox = document.createElement("div");
+  msgBox.style.position = "fixed";
+  msgBox.style.top = "2vw";
+  msgBox.style.fontWeight = "bolder";
+  msgBox.style.fontSize = "2vw";
+  msgBox.style.right = "2vw";
+  msgBox.style.padding = "0.5vw";
+  msgBox.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+  msgBox.style.zIndex = "99999999999999999999999999999"; // TODO: Better solution
+  msgBox.style.color = "teal";
+  msgBox.innerHTML = `${msgText}`;
+  return msgBox;
 }
 
 function incrementPlaybackRate(mediaElements) {
-	mediaElements.forEach((element) => element.playbackRate += 0.25);
-	displayMsg(`>> ${mediaElements[0].playbackRate || "1"}`);
+  mediaElements.forEach(element => (element.playbackRate += PLAYBACK_RATE_INCREMENT));
+  displayMsgBox(`>> ${mediaElements[0].playbackRate || N_A_MSG}`);
 }
 
 function decrementPlaybackRate(mediaElements) {
-	mediaElements.forEach((element) => element.playbackRate -= 0.25);
-	displayMsg(`<< ${mediaElements[0].playbackRate || "1"}`);
+  mediaElements.forEach(element => (element.playbackRate -= PLAYBACK_RATE_INCREMENT));
+  displayMsgBox(`<< ${mediaElements[0].playbackRate || N_A_MSG}`);
 }
 
 function resetPlaybackRate(mediaElements) {
-	mediaElements.forEach((element) => element.playbackRate = 1);
-	if (mediaElements[0] != null && mediaElements[0] != undefined) {
-		displayMsg(`Reset to: 1`);
-	}
+  mediaElements.forEach(element => (element.playbackRate = DEFAULT_PLAYBACK_VALUE));
+  displayMsgBox(`Reset to: ${DEFAULT_PLAYBACK_VALUE}`);
 }
 
-function forward10sec(mediaElements) {
-	mediaElements.forEach((element) => {
-		element.currentTime += 10
-	});
-	displayMsg(`+10`);
+function seekForward(mediaElements) {
+  mediaElements.forEach(element => {
+    element.currentTime += PLAYBACK_SEEK_INCREMENT;
+  });
+  displayMsgBox(`+${PLAYBACK_SEEK_INCREMENT}`);
 }
 
-function backward10sec(mediaElements) {
-	mediaElements.forEach((element) => {
-		element.currentTime -= 10
-	});
-	displayMsg(`-10`);
+function seekBackward(mediaElements) {
+  mediaElements.forEach(element => {
+    element.currentTime -= PLAYBACK_SEEK_INCREMENT;
+  });
+  displayMsgBox(`-${PLAYBACK_SEEK_INCREMENT}`);
 }
 
 function togglePlayPause(mediaElements) {
-	mediaElements.forEach((element) => {
-		element.paused ? element.play() : element.pause();
-	});
-	displayMsg(`⏯`);
+  mediaElements.forEach(element => {
+    element.paused ? element.play() : element.pause();
+  });
+  displayMsgBox(`${PLAY_SYMBOL}`);
 }
 
-window.addEventListener("keyup", e => {
-	if (e.altKey) {
-		switch (e.key) {
-			case "g":
-				{
-					const mediaElements = fetchAllMediaContent().reverse();
-					decrementPlaybackRate(mediaElements);
-					break;
-				}
-			case "k":
-				{
-					const mediaElements = fetchAllMediaContent().reverse();
-					togglePlayPause(mediaElements);
-					break;
-				}
-			case "h":
-				{
-					const mediaElements = fetchAllMediaContent().reverse();
-					incrementPlaybackRate(mediaElements);
-					break;
-				}
-			case "j":
-				{
-					const mediaElements = fetchAllMediaContent().reverse();
-					backward10sec(mediaElements);
-					break;
-				}
-			case "l":
-				{
-					const mediaElements = fetchAllMediaContent().reverse();
-					forward10sec(mediaElements);
-					break;
-				}
-			case "r":
-				{
-					const mediaElements = fetchAllMediaContent().reverse();
-					resetPlaybackRate(mediaElements);
-					break;
-				}
+function executeCommandOnAllMediaElements(command){
+  const mediaElements = fetchAllMediaContent().reverse();
+  command(mediaElements);
+}
 
-		}
-	}
-})
+document.addEventListener("keydown", event => {
+  const isInputElementFocused = document.activeElement instanceof HTMLInputElement;
+  if (!isInputElementFocused) {
+    switch (event.key) {
+      case DECREMENT_PLAYBACK_RATE_KEY: {
+        executeCommandOnAllMediaElements(decrementPlaybackRate)
+        break;
+      }
+      case INCREMENT_PLAYBACK_RATE_KEY: {
+        executeCommandOnAllMediaElements(incrementPlaybackRate)
+        break;
+      }
+      case TOGGLE_PLAY_PAUSE_KEY: {
+        executeCommandOnAllMediaElements(togglePlayPause)
+        break;
+      }
+      case SEEK_BACKWARD_KEY: {
+        executeCommandOnAllMediaElements(seekBackward)
+        break;
+      }
+      case SEEK_FORWARD_KEY: {
+        executeCommandOnAllMediaElements(seekForward)
+        break;
+      }
+      case RESET_PLAYBACK_RATE_KEY: {
+        executeCommandOnAllMediaElements(resetPlaybackRate)
+        break;
+      }
+    }
+  }
+});
