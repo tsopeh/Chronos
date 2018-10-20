@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
 	"name": "Chronos",
-	"version": "1.1",
+	"version": "1.1.2",
 	"description": "Video/Audio playback rate regulator.",
-	"permissions": ["tabs", "activeTab", "*://*/*"],
+	"permissions": ["activeTab"],
 	"icons": {
 		"16": "./img/chronos_icon_light-16.png",
 		"48": "./img/chronos_icon_light-48.png",
@@ -11,13 +11,14 @@
 		"128": "./img/chronos_icon_light-128.png"
 	},
 	"background": {
-		"scripts": ["./src/background.js"]
+		"scripts": ["./src/background/background.js"]
 
 	},
 	"content_scripts": [{
+		"all_frames": true,
 		"run_at": "document_idle",
 		"matches": ["<all_urls>"],
-		"js": ["./src/contentscript.js"]
+		"js": ["./src/content/content.js"]
 	}],
 	"browser_action": {
 		"browser_style": true,
@@ -35,7 +36,7 @@
 			"light": "./img/chronos_icon_light-128.png",
 			"size": 128
 		}],
-		"default_popup": "./popup.html",
+		"default_popup": "src/popup/popup.html",
 		"default_title": "Chronos extension"
 	}
 }
