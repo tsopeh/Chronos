@@ -1,7 +1,7 @@
-function displayMsgBox(msg) {
+function displayNotification(msg, timeout) {
   const msgBox = createMessageBox(msg);
   document.body.appendChild(msgBox);
-  removeMsgBox(msgBox, TEXTBOX_TIMEOUT);
+  removeNotification(msgBox, timeout);
 }
 
 function createMessageBox(msgText) {
@@ -19,6 +19,6 @@ function createMessageBox(msgText) {
   return msgBox;
 }
 
-function removeMsgBox(msgBox, timeout) {
+function removeNotification(msgBox, timeout) {
   setTimeout(() => document.body.removeChild(msgBox), timeout);
 }

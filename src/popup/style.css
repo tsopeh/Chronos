@@ -1,52 +1,53 @@
 body {
-        margin: 0px;
-        padding: 0px;
-        font-size: 5vh;
+  margin: 0px;
+  padding: 0px;
+  font-size: 5vh;
 }
 
-a:link, a:visited {
-        color: black;
-        text-decoration: none;
+a:link,
+a:visited {
+  color: black;
+  text-decoration: none;
 }
-a:hover{
-        color: #ffffff;
+a:hover {
+  color: #ffffff;
 }
 
 header {
-        width: 100vw;
-        height: 10vh;
-        background-color: teal;
+  width: 100vw;
+  height: 10vh;
+  background-color: teal;
 }
 
 article {
-        margin-bottom: 10vh;
+  margin-bottom: 10vh;
 }
 
-article h1{
-        margin-left: 5vw;
+article h1 {
+  margin-left: 5vw;
 }
 
 .credits {
-        width: 100vw;
-        height: 7vh;
-        font-size: 4vh;
-        margin-left: 15vw;
-
+  width: 100vw;
+  height: 7vh;
+  font-size: 4vh;
+  margin-left: 15vw;
 }
 
 footer {
-        width: 100vw;
-        height: 7vh;
-        background-color: teal;
-        position: fixed;
-        bottom: 0vh;
-        text-decoration: none;
+  width: 100vw;
+  height: 7vh;
+  background-color: teal;
+  position: fixed;
+  bottom: 0vh;
+  text-decoration: none;
 }
 
 footer div {
-        margin-left: 5vw;
+  margin-left: 5vw;
 }
 
-.love a:link, a:visited{
-        color: #ffffff;  
+.love a:link,
+a:visited {
+  color: #ffffff;
 }

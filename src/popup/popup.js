@@ -12,19 +12,19 @@ const RESET_PLAYBACK_RATE_KEY = "ALT+R";
 
 const popup = document.body;
 
-((popup) => {
-	definePopupStyle(popup);
-	const controlsDescription = popup.querySelector("#controlsDescription");
-	defineControlsDescription(controlsDescription);
+(popup => {
+  definePopupStyle(popup);
+  const controlsDescription = popup.querySelector("#controlsDescription");
+  defineControlsDescription(controlsDescription);
 })(popup);
 
-function definePopupStyle(popup){
-	popup.style.width = `${screen.width * 0.3}px`;
-	popup.style.height = `${screen.height * 0.3}px`;
+function definePopupStyle(popup) {
+  popup.style.width = `${screen.width * 0.3}px`;
+  popup.style.height = `${screen.height * 0.3}px`;
 }
 
-function defineControlsDescription(container){
-	container.innerHTML = `
+function defineControlsDescription(container) {
+  container.innerHTML = `
 		<li>${DECREMENT_PLAYBACK_RATE_KEY} - Reduce playback rate by ${PLAYBACK_RATE_INCREMENT}</li>
 		<li>${INCREMENT_PLAYBACK_RATE_KEY} - Incease playback rate by ${PLAYBACK_RATE_INCREMENT}</li>
 		<li>${SEEK_BACKWARD_KEY} - Seek backward by ${PLAYBACK_SEEK_INCREMENT} sec</li>
