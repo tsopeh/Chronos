@@ -1,4 +1,7 @@
-function incrementPlaybackRate(mediaElements) {
+import { N_A_MSG, NOTIFICATION_TIMEOUT, PLAY_SYMBOL, PLAYBACK_RATE_INCREMENT, DEFAULT_PLAYBACK_VALUE, PLAYBACK_SEEK_INCREMENT } from "./content";
+import { displayNotification } from "./notification";
+
+export const incrementPlaybackRate=(mediaElements) =>{
   mediaElements.forEach(
     element => (element.playbackRate += PLAYBACK_RATE_INCREMENT)
   );
@@ -7,7 +10,7 @@ function incrementPlaybackRate(mediaElements) {
   displayNotification(msg, NOTIFICATION_TIMEOUT);
 }
 
-function decrementPlaybackRate(mediaElements) {
+export const decrementPlaybackRate=(mediaElements) =>{
   mediaElements.forEach(
     element => (element.playbackRate -= PLAYBACK_RATE_INCREMENT)
   );
@@ -16,7 +19,7 @@ function decrementPlaybackRate(mediaElements) {
   displayNotification(msg, NOTIFICATION_TIMEOUT);
 }
 
-function resetPlaybackRate(mediaElements) {
+export const resetPlaybackRate=(mediaElements) =>{
   mediaElements.forEach(
     element => (element.playbackRate = DEFAULT_PLAYBACK_VALUE)
   );
@@ -24,7 +27,7 @@ function resetPlaybackRate(mediaElements) {
   displayNotification(msg, NOTIFICATION_TIMEOUT);
 }
 
-function seekForward(mediaElements) {
+export const seekForward=(mediaElements) =>{
   mediaElements.forEach(element => {
     element.currentTime += PLAYBACK_SEEK_INCREMENT;
   });
@@ -32,7 +35,7 @@ function seekForward(mediaElements) {
   displayNotification(msg, NOTIFICATION_TIMEOUT);
 }
 
-function seekBackward(mediaElements) {
+export const seekBackward=(mediaElements) =>{
   mediaElements.forEach(element => {
     element.currentTime -= PLAYBACK_SEEK_INCREMENT;
   });
@@ -40,7 +43,7 @@ function seekBackward(mediaElements) {
   displayNotification(msg, NOTIFICATION_TIMEOUT);
 }
 
-function togglePlayPause(mediaElements) {
+export const togglePlayPause=(mediaElements) =>{
   mediaElements.forEach(element => {
     element.paused ? element.play() : element.pause();
   });
