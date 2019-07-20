@@ -1,8 +1,5 @@
 {
   "name": "chronos",
-  "version": "1.0.0",
-  "description": "Chronos is a audio/video playback speed regulator and the timestamp maker. --- ## Shortcuts:  * Increase playback rate (by 0.25s): \"alt\" + 'L' * Decrease playback rate (by 0.25s): \"alt\" + 'J' * Place timestamp marker: \"alt\" + 'K' * Reset playback rate: \"alt\" + 'R'",
-  "main": "index.js",
   "scripts": {
     "dev": "parcel ./src/popup/popup.html ./src/content/content.ts ./src/background/background.ts"
   },
@@ -11,8 +8,8 @@
     "url": "git+https://github.com/tsopeh/Chronos.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "tsopeh",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsopeh/Chronos/issues"
   },
