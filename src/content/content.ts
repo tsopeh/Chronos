@@ -22,43 +22,45 @@ export const DEFAULT_PLAYBACK_VALUE = 1;
 export const PLAYBACK_SEEK_INCREMENT = 10;
 export const NOTIFICATION_TIMEOUT = 1000;
 
-const fetchAllMediaContentFromDocument = doc => {
-    const mediaElements = [];
+export type MediaElement = HTMLVideoElement | HTMLAudioElement;
+
+const fetchAllMediaContentFromDocument = (doc: Document) => {
+    const mediaElements: MediaElement[] = [];
     mediaElements.push(...doc.getElementsByTagName("video"), ...doc.getElementsByTagName("audio"));
     return mediaElements;
 };
 
-const executeCommandOnDocumentElements = (doc, command) => {
+const executeActionOnDocumentElements = (doc: Document, action) => {
     const mediaElements = fetchAllMediaContentFromDocument(doc).reverse();
-    command(mediaElements);
+    action(mediaElements);
 };
 
-const bindEventListenerToDocument = doc => {
-    doc.addEventListener("keydown", event => {
+const bindEventListenerToDocument = (doc: Document) => {
+    doc.addEventListener("keydown", (event: KeyboardEvent) => {
         if (event.altKey) {
             switch (event.code) {
                 case DECREMENT_PLAYBACK_RATE_KEY: {
-                    executeCommandOnDocumentElements(doc, decrementPlaybackRate);
+                    executeActionOnDocumentElements(doc, decrementPlaybackRate);
                     break;
                 }
                 case INCREMENT_PLAYBACK_RATE_KEY: {
-                    executeCommandOnDocumentElements(doc, incrementPlaybackRate);
+                    executeActionOnDocumentElements(doc, incrementPlaybackRate);
                     break;
                 }
                 case TOGGLE_PLAY_PAUSE_KEY: {
-                    executeCommandOnDocumentElements(doc, togglePlayPause);
+                    executeActionOnDocumentElements(doc, togglePlayPause);
                     break;
                 }
                 case SEEK_BACKWARD_KEY: {
-                    executeCommandOnDocumentElements(doc, seekBackward);
+                    executeActionOnDocumentElements(doc, seekBackward);
                     break;
                 }
                 case SEEK_FORWARD_KEY: {
-                    executeCommandOnDocumentElements(doc, seekForward);
+                    executeActionOnDocumentElements(doc, seekForward);
                     break;
                 }
                 case RESET_PLAYBACK_RATE_KEY: {
-                    executeCommandOnDocumentElements(doc, resetPlaybackRate);
+                    executeActionOnDocumentElements(doc, resetPlaybackRate);
                     break;
                 }
             }
