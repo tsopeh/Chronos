@@ -1,5 +1,19 @@
-import { DECREMENT_PLAYBACK_RATE_KEY, INCREMENT_PLAYBACK_RATE_KEY, TOGGLE_PLAY_PAUSE_KEY, SEEK_BACKWARD_KEY, SEEK_FORWARD_KEY, RESET_PLAYBACK_RATE_KEY } from "../common/keyboard-shortcuts";
-import { decrementPlaybackRate, incrementPlaybackRate, togglePlayPause, seekBackward, seekForward, resetPlaybackRate } from "./media-controls";
+import {
+  DECREMENT_PLAYBACK_RATE_KEY,
+  INCREMENT_PLAYBACK_RATE_KEY,
+  TOGGLE_PLAY_PAUSE_KEY,
+  SEEK_BACKWARD_KEY,
+  SEEK_FORWARD_KEY,
+  RESET_PLAYBACK_RATE_KEY
+} from "../common/keyboard-shortcuts";
+import {
+  decrementPlaybackRate,
+  incrementPlaybackRate,
+  togglePlayPause,
+  seekBackward,
+  seekForward,
+  resetPlaybackRate
+} from "./media-controls";
 
 export const N_A_MSG = "N/A";
 export const PLAY_SYMBOL = "⏯";
@@ -8,23 +22,21 @@ export const DEFAULT_PLAYBACK_VALUE = 1;
 export const PLAYBACK_SEEK_INCREMENT = 10;
 export const NOTIFICATION_TIMEOUT = 1000;
 
-bindEventListenerToDocument(document);
-
-function fetchAllMediaContentFromDocument(doc) {
+const fetchAllMediaContentFromDocument = doc => {
   const mediaElements = [];
   mediaElements.push(
     ...doc.getElementsByTagName("video"),
     ...doc.getElementsByTagName("audio")
   );
   return mediaElements;
-}
+};
 
-function executeCommandOnDocumentElements(doc, command) {
+const executeCommandOnDocumentElements = (doc, command) => {
   const mediaElements = fetchAllMediaContentFromDocument(doc).reverse();
   command(mediaElements);
-}
+};
 
-function bindEventListenerToDocument(doc) {
+const bindEventListenerToDocument = doc => {
   doc.addEventListener("keydown", event => {
     if (event.altKey) {
       switch (event.code) {
@@ -55,4 +67,6 @@ function bindEventListenerToDocument(doc) {
       }
     }
   });
-}
+};
+
+bindEventListenerToDocument(document);

@@ -1,8 +1,8 @@
-export const displayNotification =(msg, timeout) =>{
+export const displayNotification = (msg, timeout) => {
   const msgBox = createMessageBox(msg);
   document.body.appendChild(msgBox);
   removeNotification(msgBox, timeout);
-}
+};
 
 function createMessageBox(msgText) {
   const msgBox = document.createElement("div");
