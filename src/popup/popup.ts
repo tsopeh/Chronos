@@ -1,10 +1,10 @@
 import {
-  DECREMENT_PLAYBACK_RATE_KEY,
-  INCREMENT_PLAYBACK_RATE_KEY,
-  SEEK_BACKWARD_KEY,
-  TOGGLE_PLAY_PAUSE_KEY,
-  SEEK_FORWARD_KEY,
-  RESET_PLAYBACK_RATE_KEY
+    DECREMENT_PLAYBACK_RATE_KEY,
+    INCREMENT_PLAYBACK_RATE_KEY,
+    SEEK_BACKWARD_KEY,
+    TOGGLE_PLAY_PAUSE_KEY,
+    SEEK_FORWARD_KEY,
+    RESET_PLAYBACK_RATE_KEY
 } from "../common/keyboard-shortcuts";
 
 const PLAYBACK_RATE_INCREMENT = 0.25;
@@ -14,18 +14,18 @@ const PLAYBACK_SEEK_INCREMENT = 10;
 const popup = document.body;
 
 (popup => {
-  definePopupStyle(popup);
-  const controlsDescription = popup.querySelector("#controlsDescription");
-  defineControlsDescription(controlsDescription);
+    definePopupStyle(popup);
+    const controlsDescription = popup.querySelector("#controlsDescription");
+    defineControlsDescription(controlsDescription);
 })(popup);
 
-function definePopupStyle(popup) {
-  popup.style.width = `${screen.width * 0.3}px`;
-  popup.style.height = `${screen.height * 0.3}px`;
-}
+const definePopupStyle = popup => {
+    popup.style.width = `${screen.width * 0.3}px`;
+    popup.style.height = `${screen.height * 0.3}px`;
+};
 
-function defineControlsDescription(container) {
-  container.innerHTML = `
+const defineControlsDescription = container => {
+    container.innerHTML = `
 		<li>${DECREMENT_PLAYBACK_RATE_KEY} - Reduce playback rate by ${PLAYBACK_RATE_INCREMENT}</li>
 		<li>${INCREMENT_PLAYBACK_RATE_KEY} - Incease playback rate by ${PLAYBACK_RATE_INCREMENT}</li>
 		<li>${SEEK_BACKWARD_KEY} - Seek backward by ${PLAYBACK_SEEK_INCREMENT} sec</li>
@@ -33,4 +33,4 @@ function defineControlsDescription(container) {
 		<li>${SEEK_FORWARD_KEY} - Seek forward by ${PLAYBACK_SEEK_INCREMENT} sec</li>
 		<li>${RESET_PLAYBACK_RATE_KEY} - Reset to default playback rate (${DEFAULT_PLAYBACK_VALUE})</li>
 	`;
-}
+};

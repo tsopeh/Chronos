@@ -1,21 +1,21 @@
 {
-  "name": "chronos",
-  "scripts": {
-    "dev": "parcel ./src/popup/popup.html ./src/content/content.ts ./src/background/background.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tsopeh/Chronos.git"
-  },
-  "keywords": [],
-  "author": "tsopeh",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tsopeh/Chronos/issues"
-  },
-  "homepage": "https://github.com/tsopeh/Chronos#readme",
-  "devDependencies": {
-    "sass": "^1.22.7",
-    "typescript": "^3.5.3"
-  }
+    "name": "chronos",
+    "scripts": {
+        "dev": "parcel ./src/popup/popup.html ./src/content/content.ts ./src/background/background.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tsopeh/Chronos.git"
+    },
+    "keywords": [],
+    "author": "tsopeh",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/tsopeh/Chronos/issues"
+    },
+    "homepage": "https://github.com/tsopeh/Chronos#readme",
+    "devDependencies": {
+        "sass": "^1.22.7",
+        "typescript": "^3.5.3"
+    }
 }
