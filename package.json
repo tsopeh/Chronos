@@ -1,7 +1,7 @@
 {
     "name": "chronos",
     "scripts": {
-        "dev": "parcel ./src/popup/popup.html ./src/content/content.ts ./src/background/background.ts"
+        "dev": "mkdir ./dist; cp -r ./{manifest.json,img} ./dist; parcel build './src/**/*'"
     },
     "repository": {
         "type": "git",

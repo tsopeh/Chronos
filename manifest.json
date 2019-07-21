@@ -11,7 +11,7 @@
     "128": "./img/chronos_icon_light-128.png"
   },
   "background": {
-    "scripts": ["./src/background/background.js"]
+    "scripts": ["./background/background.js"]
   },
   "content_scripts": [
     {
@@ -19,9 +19,9 @@
       "run_at": "document_idle",
       "matches": ["<all_urls>"],
       "js": [
-        "./src/content/content.js",
-        "./src/content/media-controls.js",
-        "./src/content/notification.js"
+        "./content/content.js",
+        "./content/media-controls.js",
+        "./content/notification/notification.js"
       ]
     }
   ],
@@ -46,7 +46,7 @@
         "size": 128
       }
     ],
-    "default_popup": "src/popup/popup.html",
+    "default_popup": "./popup/popup.html",
     "default_title": "Chronos"
   }
 }
