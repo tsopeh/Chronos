@@ -1,52 +1,29 @@
 {
-  "manifest_version": 2,
-  "name": "Chronos",
-  "version": "1.1.3",
-  "description": "Video/Audio playback-rate regulator.",
-  "permissions": ["activeTab"],
-  "icons": {
-    "16": "./img/chronos_icon_light-16.png",
-    "48": "./img/chronos_icon_light-48.png",
-    "96": "./img/chronos_icon_light-96.png",
-    "128": "./img/chronos_icon_light-128.png"
-  },
-  "background": {
-    "scripts": ["./background/background.js"]
-  },
-  "content_scripts": [
-    {
-      "all_frames": true,
-      "run_at": "document_idle",
-      "matches": ["<all_urls>"],
-      "js": [
-        "./content/content.js",
-        "./content/media-controls.js",
-        "./content/notification/notification.js"
-      ]
-    }
-  ],
-  "browser_action": {
-    "browser_style": true,
-    "default_icon": "./img/chronos_icon_light-512.png",
-    "theme_icons": [
-      {
-        "light": "./img/chronos_icon_light-16.png",
-        "size": 16
-      },
-      {
-        "light": "./img/chronos_icon_light-32.png",
-        "size": 32
-      },
-      {
-        "light": "./img/chronos_icon_light-48.png",
-        "size": 48
-      },
-      {
-        "light": "./img/chronos_icon_light-128.png",
-        "size": 128
-      }
-    ],
-    "default_popup": "./popup/popup.html",
-    "default_title": "Chronos"
-  }
+    "manifest_version": 2,
+    "name": "Chronos",
+    "version": "1.2.0",
+    "description": "Video/Audio playback-rate regulator.",
+    "permissions": ["activeTab"],
+    "icons": {
+        "16": "./icons/chronos_icon_light-16.png",
+        "48": "./icons/chronos_icon_light-48.png",
+        "96": "./icons/chronos_icon_light-96.png",
+        "128": "./icons/chronos_icon_light-128.png"
+    },
+    "background": {
+        "scripts": ["./background/background.js"]
+    },
+    "browser_action": {
+        "browser_style": true,
+        "default_title": "Chronos",
+        "default_popup": "./popup/popup.html"
+    },
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "run_at": "document_idle",
+            "matches": ["<all_urls>"],
+            "js": ["./common/keyboard-shortcuts.js","./content/content.js", "./content/media-controls.js", "./content/notification/notification.js"]
+        }
+    ]
 }

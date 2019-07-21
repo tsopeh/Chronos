@@ -13,18 +13,18 @@ const PLAYBACK_SEEK_INCREMENT = 10;
 
 const popup = document.body;
 
-((popup) => {
+((popup: HTMLElement) => {
     definePopupStyle(popup);
-    const controlsDescription = popup.querySelector("#controlsDescription");
+    const controlsDescription: HTMLUListElement = popup.querySelector("#controlsDescription");
     defineControlsDescription(controlsDescription);
 })(popup);
 
-const definePopupStyle = (popup) => {
+const definePopupStyle = (popup: HTMLElement) => {
     popup.style.width = `${screen.width * 0.3}px`;
     popup.style.height = `${screen.height * 0.3}px`;
 };
 
-const defineControlsDescription = (container) => {
+const defineControlsDescription = (container: HTMLUListElement) => {
     container.innerHTML = `
 		<li>${DECREMENT_PLAYBACK_RATE_KEY} - Reduce playback rate by ${PLAYBACK_RATE_INCREMENT}</li>
 		<li>${INCREMENT_PLAYBACK_RATE_KEY} - Incease playback rate by ${PLAYBACK_RATE_INCREMENT}</li>
