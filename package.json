@@ -1,7 +1,7 @@
 {
     "name": "chronos",
     "scripts": {
-        "dev": "mkdir ./dist; cp -r ./{manifest.json,assets} ./dist; ./node_modules/.bin/babel"
+        "dev": "mkdir ./dist; cp -r ./{manifest.json,assets,/src/popup/{*.html,*.css}} ./dist; ./node_modules/.bin/webpack"
     },
     "repository": {
         "type": "git",
@@ -16,6 +16,9 @@
     "homepage": "https://github.com/tsopeh/Chronos#readme",
     "devDependencies": {
         "sass": "^1.22.7",
-        "typescript": "^3.5.3"
-    }
+        "ts-loader": "^6.0.4",
+        "typescript": "^3.5.3",
+        "webpack": "^4.36.1"
+    },
+    "dependencies": {}
 }

@@ -24,13 +24,11 @@ export const NOTIFICATION_TIMEOUT = 1000;
 
 export type MediaElement = HTMLVideoElement | HTMLAudioElement;
 
-const fetchAllMediaContentFromDocument = (doc: Document) => {
-    const mediaElements: MediaElement[] = [];
-    mediaElements.push(...doc.getElementsByTagName("video"), ...doc.getElementsByTagName("audio"));
-    return mediaElements;
+const fetchAllMediaContentFromDocument = (doc: Document): MediaElement[] => {
+    return [...doc.getElementsByTagName("video"), ...doc.getElementsByTagName("audio")];
 };
 
-const executeActionOnDocumentElements = (doc: Document, action) => {
+const executeActionOnDocumentElements = (doc: Document, action: any) => {
     const mediaElements = fetchAllMediaContentFromDocument(doc).reverse();
     action(mediaElements);
 };

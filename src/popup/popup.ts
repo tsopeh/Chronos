@@ -11,14 +11,6 @@ const PLAYBACK_RATE_INCREMENT = 0.25;
 const DEFAULT_PLAYBACK_VALUE = 1;
 const PLAYBACK_SEEK_INCREMENT = 10;
 
-const popup = document.body;
-
-((popup: HTMLElement) => {
-    definePopupStyle(popup);
-    const controlsDescription: HTMLUListElement = popup.querySelector("#controlsDescription");
-    defineControlsDescription(controlsDescription);
-})(popup);
-
 const definePopupStyle = (popup: HTMLElement) => {
     popup.style.width = `${screen.width * 0.3}px`;
     popup.style.height = `${screen.height * 0.3}px`;
@@ -34,3 +26,11 @@ const defineControlsDescription = (container: HTMLUListElement) => {
 		<li>${RESET_PLAYBACK_RATE_KEY} - Reset to default playback rate (${DEFAULT_PLAYBACK_VALUE})</li>
 	`;
 };
+
+const popup = document.body;
+
+((popup: HTMLElement) => {
+    definePopupStyle(popup);
+    const controlsDescription: HTMLUListElement | null = popup.querySelector("#controlsDescription");
+    !!controlsDescription ? defineControlsDescription(controlsDescription) : null;
+})(popup);
