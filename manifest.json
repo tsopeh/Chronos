@@ -5,10 +5,10 @@
     "description": "Video/Audio playback-rate regulator.",
     "permissions": ["activeTab"],
     "icons": {
-        "16": "./icons/chronos_icon_light-16.png",
-        "48": "./icons/chronos_icon_light-48.png",
-        "96": "./icons/chronos_icon_light-96.png",
-        "128": "./icons/chronos_icon_light-128.png"
+        "16": "./assets/icons/chronos_icon_light-16.png",
+        "48": "./assets/icons/chronos_icon_light-48.png",
+        "96": "./assets/icons/chronos_icon_light-96.png",
+        "128": "./assets/icons/chronos_icon_light-128.png"
     },
     "background": {
         "scripts": ["./background/background.js"]
@@ -23,7 +23,9 @@
             "all_frames": true,
             "run_at": "document_idle",
             "matches": ["<all_urls>"],
-            "js": ["./common/keyboard-shortcuts.js","./content/content.js", "./content/media-controls.js", "./content/notification/notification.js"]
+            "js": [
+                "./content/content.js"
+            ]
         }
     ]
 }

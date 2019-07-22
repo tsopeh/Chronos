@@ -1,69 +1,61 @@
 import {
     DECREMENT_PLAYBACK_RATE_KEY,
     INCREMENT_PLAYBACK_RATE_KEY,
-    TOGGLE_PLAY_PAUSE_KEY,
+    RESET_PLAYBACK_RATE_KEY,
     SEEK_BACKWARD_KEY,
     SEEK_FORWARD_KEY,
-    RESET_PLAYBACK_RATE_KEY
+    TOGGLE_PLAY_PAUSE_KEY
 } from "../common/keyboard-shortcuts";
 import {
     decrementPlaybackRate,
     incrementPlaybackRate,
-    togglePlayPause,
+    resetPlaybackRate,
     seekBackward,
     seekForward,
-    resetPlaybackRate
-} from "./media-controls";
+    togglePlayPause
+} from "./actions/actions";
+import { ChronosAction } from "./actions/chronos-action.model";
+import { MediaElement } from "./media-elemets/media-element.model";
+import { fetchAllMediaContentFromDocument } from "./media-elemets/media-elements.util";
 
-export const N_A_MSG = "N/A";
-export const PLAY_SYMBOL = "⏯";
-export const PLAYBACK_RATE_INCREMENT = 0.25;
-export const DEFAULT_PLAYBACK_VALUE = 1;
-export const PLAYBACK_SEEK_INCREMENT = 10;
-export const NOTIFICATION_TIMEOUT = 1000;
-
-export type MediaElement = HTMLVideoElement | HTMLAudioElement;
-
-const fetchAllMediaContentFromDocument = (doc: Document): MediaElement[] => {
-    return [...doc.getElementsByTagName("video"), ...doc.getElementsByTagName("audio")];
-};
-
-const executeActionOnDocumentElements = (doc: Document, action: any) => {
-    const mediaElements = fetchAllMediaContentFromDocument(doc).reverse();
-    action(mediaElements);
-};
+const executeActionOnDocumentElements = (mediaElements: MediaElement[]) => (action: ChronosAction): void => action(mediaElements);
 
 const bindEventListenerToDocument = (doc: Document) => {
     doc.addEventListener("keydown", (event: KeyboardEvent) => {
+        const mediaElements: MediaElement[] = fetchAllMediaContentFromDocument(doc);
+        const executeAction = executeActionOnDocumentElements(mediaElements);
         if (event.altKey) {
-            switch (event.code) {
+            const key = keyCodeToKey(event.code);
+            switch (key) {
                 case DECREMENT_PLAYBACK_RATE_KEY: {
-                    executeActionOnDocumentElements(doc, decrementPlaybackRate);
+                    executeAction(decrementPlaybackRate);
                     break;
                 }
                 case INCREMENT_PLAYBACK_RATE_KEY: {
-                    executeActionOnDocumentElements(doc, incrementPlaybackRate);
+                    executeAction(incrementPlaybackRate);
                     break;
                 }
                 case TOGGLE_PLAY_PAUSE_KEY: {
-                    executeActionOnDocumentElements(doc, togglePlayPause);
+                    executeAction(togglePlayPause);
                     break;
                 }
                 case SEEK_BACKWARD_KEY: {
-                    executeActionOnDocumentElements(doc, seekBackward);
+                    executeAction(seekBackward);
                     break;
                 }
                 case SEEK_FORWARD_KEY: {
-                    executeActionOnDocumentElements(doc, seekForward);
+                    executeAction(seekForward);
                     break;
                 }
                 case RESET_PLAYBACK_RATE_KEY: {
-                    executeActionOnDocumentElements(doc, resetPlaybackRate);
+                    executeAction(resetPlaybackRate);
                     break;
                 }
             }
         }
     });
 };
+
+const keyCodeToKey = (code: string): string => code.replace(/Key/, "");
 
 bindEventListenerToDocument(document);

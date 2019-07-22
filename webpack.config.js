@@ -1,3 +1,4 @@
+// @ts-check
 const path = require("path");
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
         content: "./src/content/content.ts",
         popup: "./src/popup/popup.ts"
     },
-    mode: 'development',
+    mode: "development",
     devtool: "inline-source-map",
     module: {
         rules: [
@@ -18,10 +19,10 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: [".ts"]
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "./[name].js"
+        filename: "./[name]/[name].js"
     }
 };
