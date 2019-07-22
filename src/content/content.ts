@@ -17,6 +17,7 @@ import {
 import { ChronosAction } from "./actions/chronos-action.model";
 import { MediaElement } from "./media-elemets/media-element.model";
 import { fetchAllMediaContentFromDocument } from "./media-elemets/media-elements.util";
+import { initMenu } from "./menu/menu";
 
 const executeActionOnDocumentElements = (mediaElements: MediaElement[]) => (action: ChronosAction): void => action(mediaElements);
 
@@ -59,3 +60,9 @@ const bindEventListenerToDocument = (doc: Document) => {
 const keyCodeToKey = (code: string): string => code.replace(/Key/, "");
 
 bindEventListenerToDocument(document);
+const countTreshold = 2;
+const timeoutInMs = 500;
+
+initMenu(document)(countTreshold)(timeoutInMs)(() => {
+    console.log("Double tapped alt");
+});
