@@ -1,11 +1,13 @@
+import { isActivationKeyPressed } from "../../common/keyboard-shortcuts";
+
 export const initMenu = (doc: Document) => (treshhold: number) => (timeoutInMs: number) => (callback: () => void) => {
     let count = 0;
-    let timeoutRef: number | null = null;
+    let timeoutRef: NodeJS.Timeout | null = null;
     doc.addEventListener("keydown", (event: KeyboardEvent) => {
-        if (event.altKey) {
+        if (isActivationKeyPressed(event)) {
             count++;
-            if (!isNaN(timeoutRef as number)) {
-                clearTimeout(timeoutRef as number);
+            if (!!timeoutRef) {
+                clearTimeout(timeoutRef as NodeJS.Timeout);
             }
             if (count % treshhold === 0) {
                 callback();

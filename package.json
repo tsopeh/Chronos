@@ -1,7 +1,8 @@
 {
     "name": "chronos",
     "scripts": {
-        "dev": "./copy-static-assets.sh; ./node_modules/.bin/webpack --watch"
+        "dev": "./copy-static-assets.sh; ./node_modules/.bin/webpack --watch",
+        "start": "web-ext run --firefox=nightly --source-dir ./dist/"
     },
     "repository": {
         "type": "git",
@@ -18,6 +19,7 @@
         "sass": "^1.22.7",
         "ts-loader": "^6.0.4",
         "typescript": "^3.5.3",
+        "web-ext": "^3.1.1",
         "webpack": "^4.36.1",
         "webpack-cli": "^3.3.6"
     },

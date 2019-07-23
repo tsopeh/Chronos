@@ -4,7 +4,8 @@ import {
     RESET_PLAYBACK_RATE_KEY,
     SEEK_BACKWARD_KEY,
     SEEK_FORWARD_KEY,
-    TOGGLE_PLAY_PAUSE_KEY
+    TOGGLE_PLAY_PAUSE_KEY,
+    isActivationKeyPressed
 } from "../common/keyboard-shortcuts";
 import {
     decrementPlaybackRate,
@@ -25,7 +26,8 @@ const bindEventListenerToDocument = (doc: Document) => {
     doc.addEventListener("keydown", (event: KeyboardEvent) => {
         const mediaElements: MediaElement[] = fetchAllMediaContentFromDocument(doc);
         const executeAction = executeActionOnDocumentElements(mediaElements);
-        if (event.altKey) {
+        const shouldExecuteAction = !(event.target as HTMLElement).tagName.toLocaleLowerCase().includes("input");
+        if (isActivationKeyPressed(event) && shouldExecuteAction) {
             const key = keyCodeToKey(event.code);
             switch (key) {
                 case DECREMENT_PLAYBACK_RATE_KEY: {
@@ -64,5 +66,5 @@ const countTreshold = 2;
 const timeoutInMs = 500;
 
 initMenu(document)(countTreshold)(timeoutInMs)(() => {
-    console.log("Double tapped alt");
+    console.log("Double tapped Action key");
 });
