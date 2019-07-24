@@ -17,14 +17,14 @@ import {
 } from "./actions/actions";
 import { ChronosAction } from "./actions/chronos-action.model";
 import { MediaElement } from "./media-elemets/media-element.model";
-import { fetchAllMediaContentFromDocument } from "./media-elemets/media-elements.util";
+import { fetchAllMediaContentFromDocument, isElementInView } from "./media-elemets/media-elements.util";
 import { initMenu } from "./menu/menu";
 
 const executeActionOnDocumentElements = (mediaElements: MediaElement[]) => (action: ChronosAction): void => action(mediaElements);
 
 const bindEventListenerToDocument = (doc: Document) => {
     doc.addEventListener("keydown", (event: KeyboardEvent) => {
-        const mediaElements: MediaElement[] = fetchAllMediaContentFromDocument(doc);
+        const mediaElements: MediaElement[] = fetchAllMediaContentFromDocument(doc).filter(isElementInView);
         const executeAction = executeActionOnDocumentElements(mediaElements);
         const shouldExecuteAction = !(event.target as HTMLElement).tagName.toLocaleLowerCase().includes("input");
         if (isActivationKeyPressed(event) && shouldExecuteAction) {
@@ -68,3 +68,5 @@ const timeoutInMs = 500;
 initMenu(document)(countTreshold)(timeoutInMs)(() => {
     console.log("Double tapped Action key");
 });
+
+
