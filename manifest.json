@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Chronos",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Video/Audio playback-rate regulator.",
     "permissions": ["activeTab"],
     "icons": {
