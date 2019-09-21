@@ -1,5 +1,5 @@
-import { MediaElement } from "../media-elemets/media-element.model";
+import { MediaElement } from '../media-elemets/media-element';
 
 export interface ChronosAction {
-    (mediaElements: MediaElement[]): void;
+	(mediaElements: MediaElement[]): void;
 }

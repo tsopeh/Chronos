@@ -16,8 +16,7 @@ import {
     togglePlayPause
 } from "./actions/actions";
 import { ChronosAction } from "./actions/chronos-action.model";
-import { MediaElement } from "./media-elemets/media-element.model";
-import { fetchAllMediaContentFromDocument, isElementInView } from "./media-elemets/media-elements.util";
+import { fetchAllMediaContentFromDocument, isElementInView, MediaElement } from "./media-elemets/media-element";
 import { initMenu } from "./menu/menu";
 
 const executeActionOnDocumentElements = (mediaElements: MediaElement[]) => (action: ChronosAction): void => action(mediaElements);
@@ -68,5 +67,3 @@ const timeoutInMs = 500;
 initMenu(document)(countTreshold)(timeoutInMs)(() => {
     console.log("Double tapped Action key");
 });
-
-
