@@ -1,7 +1,7 @@
-export const displayNotification = (msg:string, timeout: number) => {
+export const displayNotification = (msg: string, timeout: number) => {
     const msgBox = createMessageBox(msg);
     document.body.appendChild(msgBox);
-    removeNotification(msgBox, timeout);
+    removeNotificationOnTimeOut(msgBox, timeout);
 };
 
 const createMessageBox = (msgText: string) => {
@@ -19,6 +19,6 @@ const createMessageBox = (msgText: string) => {
     return msgBox;
 };
 
-const removeNotification = (msgBox: HTMLElement, timeout: number) => {
+const removeNotificationOnTimeOut = (msgBox: HTMLElement, timeout: number) => {
     setTimeout(() => document.body.removeChild(msgBox), timeout);
 };

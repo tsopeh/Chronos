@@ -11,5 +11,5 @@ export const isElementInView = (element: HTMLElement) => {
     const isLeftInView = left < window.innerWidth && left > 0;
     const isRightInView = right < window.innerWidth && right > 0;
     const isInView = (isTopInView || isBottomInView) && (isLeftInView || isRightInView);
-    return isInView
+    return isInView;
 };
