@@ -16,11 +16,11 @@
     },
     "homepage": "https://github.com/tsopeh/Chronos#readme",
     "devDependencies": {
-        "sass": "^1.22.12",
-        "ts-loader": "^6.1.2",
-        "typescript": "^3.6.3",
-        "web-ext": "^3.1.1",
-        "webpack": "^4.40.2",
+        "sass": "^1.23.0",
+        "ts-loader": "^6.2.0",
+        "typescript": "^3.6.4",
+        "web-ext": "^3.2.0",
+        "webpack": "^4.41.2",
         "webpack-cli": "^3.3.9"
     },
     "dependencies": {}

@@ -1,69 +1,33 @@
+import { documentCreateElement } from "../common/ts-utils";
+import { initControlStrip, removeControlStrip } from "./control-strip/control-strip";
 import {
-    DECREMENT_PLAYBACK_RATE_KEY,
-    INCREMENT_PLAYBACK_RATE_KEY,
-    RESET_PLAYBACK_RATE_KEY,
-    SEEK_BACKWARD_KEY,
-    SEEK_FORWARD_KEY,
-    TOGGLE_PLAY_PAUSE_KEY,
-    isActivationKeyPressed
-} from "../common/keyboard-shortcuts";
-import {
-    decrementPlaybackRate,
-    incrementPlaybackRate,
-    resetPlaybackRate,
-    seekBackward,
-    seekForward,
-    togglePlayPause
-} from "./actions/actions";
-import { ChronosAction } from "./actions/chronos-action.model";
-import { fetchAllMediaContentFromDocument, isElementInView, MediaElement } from "./media-elemets/media-element";
-import { initMenu } from "./menu/menu";
+    MediaElement,
+    MediaElementNodeName,
+    getAllMediaElementsFromDocument,
+    getMediaElementsFromNodeList
+} from "./media-elemets/media-element";
 
-const executeActionOnDocumentElements = (mediaElements: MediaElement[]) => (action: ChronosAction): void => action(mediaElements);
+export const createElement = documentCreateElement(document);
 
-const bindEventListenerToDocument = (doc: Document) => {
-    doc.addEventListener("keydown", (event: KeyboardEvent) => {
-        const mediaElements: MediaElement[] = fetchAllMediaContentFromDocument(doc).filter(isElementInView);
-        const executeAction = executeActionOnDocumentElements(mediaElements);
-        const shouldExecuteAction = !(event.target as HTMLElement).tagName.toLocaleLowerCase().includes("input");
-        if (isActivationKeyPressed(event) && shouldExecuteAction) {
-            const key = keyCodeToKey(event.code);
-            switch (key) {
-                case DECREMENT_PLAYBACK_RATE_KEY: {
-                    executeAction(decrementPlaybackRate);
-                    break;
-                }
-                case INCREMENT_PLAYBACK_RATE_KEY: {
-                    executeAction(incrementPlaybackRate);
-                    break;
-                }
-                case TOGGLE_PLAY_PAUSE_KEY: {
-                    executeAction(togglePlayPause);
-                    break;
-                }
-                case SEEK_BACKWARD_KEY: {
-                    executeAction(seekBackward);
-                    break;
-                }
-                case SEEK_FORWARD_KEY: {
-                    executeAction(seekForward);
-                    break;
-                }
-                case RESET_PLAYBACK_RATE_KEY: {
-                    executeAction(resetPlaybackRate);
-                    break;
-                }
-            }
+const initChronos = (mediaElement: MediaElement) => {
+    initControlStrip(mediaElement);
+};
+
+const onDomMutation: MutationCallback = (mutations: MutationRecord[]) => {
+    mutations.forEach((mutation: MutationRecord) => {
+        if (mutation.type === "childList") {
+            const addedMediaElements = getMediaElementsFromNodeList(mutation.addedNodes);
+            addedMediaElements.forEach(initChronos);
+
+            const removedMediaElements = getMediaElementsFromNodeList(mutation.removedNodes);
+            removedMediaElements.map((element) => element.dataset.chronosId).forEach(removeControlStrip);
         }
     });
 };
 
-const keyCodeToKey = (code: string): string => code.replace(/Key/, "");
+const alreadyLoadedMediaElements = getAllMediaElementsFromDocument(document);
+alreadyLoadedMediaElements.forEach(initChronos);
 
-bindEventListenerToDocument(document);
-const countTreshold = 2;
-const timeoutInMs = 500;
-
-initMenu(document)(countTreshold)(timeoutInMs)(() => {
-    console.log("Double tapped Action key");
-});
+const domMutationObserver = new MutationObserver(onDomMutation);
+const rootElement = document.body;
+domMutationObserver.observe(rootElement, { childList: true, subtree: true });
