@@ -1,6 +1,7 @@
 import { applyCssToElement, PartialCSS, uuid } from "../../common/ts-utils";
 import { createElement } from "../content";
 import { MediaElement } from "../media-elemets/media-element";
+import "./control-strip.scss";
 
 export const initControlStrip = (mediaElement: MediaElement) => {
     const controlStrip: HTMLSpanElement = createControlStrip(mediaElement);
@@ -14,22 +15,23 @@ const bindControlStripToMediaElement = (controlStrip: HTMLSpanElement, mediaElem
 };
 
 const appendControlButtons = (controlStrip: HTMLSpanElement) => {
-    Array({ length: 4 }).forEach(() => controlStrip.appendChild(createElement<HTMLButtonElement>("button")));
+    const buttonTagName = "chronos-button";
+    Array.from({ length: 7 }).forEach((_, index) => {
+        const button = createElement<HTMLButtonElement>(buttonTagName);
+        button.innerText = String(index);
+        controlStrip.appendChild(button);
+    });
 };
 
 const createControlStrip = (mediaElement: MediaElement): HTMLSpanElement => {
-    const controlStrip = createElement<HTMLSpanElement>("chronosStrip");
+    const controlStripTagName = "chronos-control-strip";
+    const controlStrip = createElement<HTMLSpanElement>(controlStripTagName);
     appendControlButtons(controlStrip);
-    const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = mediaElement;
+    const { offsetTop, offsetLeft } = mediaElement;
     const controlStripCSS: PartialCSS = {
-        top: `${offsetTop}px`,
-        left: `${offsetLeft}px`,
-        position: "absolute",
-        width: `${offsetWidth}px`,
-        height: `${offsetHeight}px`,
-        border: `3px solid red`
+        top: `${offsetTop > 0 ? offsetTop : 0}px`,
+        left: `${offsetLeft > 0 ? offsetLeft : 0}px`
     };
-    console.log(controlStripCSS);
     applyCssToElement(controlStripCSS)(controlStrip);
     return controlStrip;
 };
