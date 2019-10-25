@@ -1,9 +1,8 @@
 chronos-control-strip {
     position: absolute;
-    border: 1px solid red;
+    border: 1px solid transparent;
     display: flex;
-    z-index: 999999999999999999999999999999999999999;
-    box-sizing: border-box;
+    z-index: 2147483638;
     transition: opacity 1s ease-in-out;
     user-select: none;
 
@@ -12,22 +11,29 @@ chronos-control-strip {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #777777;
-        width: 20px;
-        height: 20px;
+        box-sizing: border-box;
+        background-color: #555555;
+        width: 25px;
+        height: 25px;
         margin: 1px;
-        transition: opacity 0.2s ease-in-out;
-        color: #000000;
+        transition: all 0.2s ease-in-out;
     }
 
     & chronos-button:first-of-type {
         opacity: 0.6;
-        cursor: move;
+        cursor: grab;
+        color: #ffffff;
+        border: 1px solid #dddddd;
     }
 
     & chronos-button:not(:first-of-type) {
-        opacity: 0.2;
+        opacity: 0.1;
+        color: #000000;
         cursor: pointer;
+
+        &:hover {
+            background-color: #777777
+        }
     }
 
     &:hover chronos-button {

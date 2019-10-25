@@ -1,10 +1,14 @@
 import { applyCssToElement, PartialCSS, uuid } from "../../common/ts-utils";
 import { createElement } from "../content";
 import { MediaElement } from "../media-elemets/media-element";
+import { onDragStart } from "./control-strip-drag";
 import "./control-strip.scss";
 
-export const initControlStrip = (mediaElement: MediaElement) => {
-    const controlStrip: HTMLSpanElement = createControlStrip(mediaElement);
+export const chronosControlStripTagName = "chronos-control-strip";
+export const chronosButtonTagName = "chronos-button";
+
+export const createControlStrip = (mediaElement: MediaElement) => {
+    const controlStrip: HTMLSpanElement = createControlStripElement(mediaElement);
     bindControlStripToMediaElement(controlStrip, mediaElement, uuid());
     document.body.appendChild(controlStrip);
 };
@@ -15,24 +19,24 @@ const bindControlStripToMediaElement = (controlStrip: HTMLSpanElement, mediaElem
 };
 
 const appendControlButtons = (controlStrip: HTMLSpanElement) => {
-    const buttonTagName = "chronos-button";
     Array.from({ length: 7 }).forEach((_, index) => {
-        const button = createElement<HTMLButtonElement>(buttonTagName);
-        button.innerText = String(index);
+        const button = createElement<HTMLButtonElement>(chronosButtonTagName);
+        button.innerText = `${index}.0`;
+        button.title = String(`(alt+${index})`);
         controlStrip.appendChild(button);
     });
 };
 
-const createControlStrip = (mediaElement: MediaElement): HTMLSpanElement => {
-    const controlStripTagName = "chronos-control-strip";
-    const controlStrip = createElement<HTMLSpanElement>(controlStripTagName);
+const createControlStripElement = (mediaElement: MediaElement): HTMLSpanElement => {
+    const controlStrip = createElement<HTMLSpanElement>(chronosControlStripTagName);
     appendControlButtons(controlStrip);
-    const { offsetTop, offsetLeft } = mediaElement;
+    const { top, left } = mediaElement.getBoundingClientRect();
     const controlStripCSS: PartialCSS = {
-        top: `${offsetTop > 0 ? offsetTop : 0}px`,
-        left: `${offsetLeft > 0 ? offsetLeft : 0}px`
+        top: `${top > 0 ? top : 0}px`,
+        left: `${left > 0 ? left : 0}px`
     };
     applyCssToElement(controlStripCSS)(controlStrip);
+    controlStrip.addEventListener("pointerdown", onDragStart);
     return controlStrip;
 };
 
