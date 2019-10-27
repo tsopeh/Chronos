@@ -2,4 +2,4 @@
 
 mkdir ./dist ./dist/popup
 cp -r ./{manifest.json,assets} ./dist
-cp -r ./src/popup/{popup.html,style.css} ./dist/popup
+cp -r ./src/popup/{popup.html} ./dist/popup

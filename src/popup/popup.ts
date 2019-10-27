@@ -7,6 +7,7 @@ import {
     TOGGLE_PLAY_PAUSE_KEY
 } from "../common/keyboard-shortcuts";
 import { DEFAULT_PLAYBACK_VALUE, PLAYBACK_RATE_INCREMENT, PLAYBACK_SEEK_INCREMENT } from "../content/actions/actions";
+import "./popup.scss";
 
 const actionKey = "shift";
 
