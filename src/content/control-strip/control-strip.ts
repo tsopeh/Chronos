@@ -1,4 +1,4 @@
-import { applyCssToElement, PartialCSS, uuid } from "../../common/ts-utils";
+import { applyCssToElement, PartialCSS, uuid, isDefined, isNotDefined } from "../../common/ts-utils";
 import { createElement } from "../content";
 import { MediaElement } from "../media-elemets/media-element";
 import { onDragStart } from "./control-strip-drag";
@@ -6,6 +6,21 @@ import "./control-strip.scss";
 
 export const chronosControlStripTagName = "chronos-control-strip";
 export const chronosButtonTagName = "chronos-button";
+
+export const createControlStripIfNeeded = (mediaElement: MediaElement) => {
+    const maybeChronosId = mediaElement.dataset.chronosId;
+    if (isNotDefined(maybeChronosId)) {
+        createControlStrip(mediaElement);
+    }
+};
+
+export const recreateControlStrip = (mediaElement: MediaElement) => {
+    const maybeChronosId = mediaElement.dataset.chronosId;
+    if (isDefined(maybeChronosId)) {
+        removeControlStrip(maybeChronosId as string);
+    }
+    createControlStrip(mediaElement);
+};
 
 export const createControlStrip = (mediaElement: MediaElement) => {
     const controlStrip: HTMLSpanElement = createControlStripElement(mediaElement);
@@ -32,8 +47,8 @@ const createControlStripElement = (mediaElement: MediaElement): HTMLSpanElement 
     appendControlButtons(controlStrip);
     const { top, left } = mediaElement.getBoundingClientRect();
     const controlStripCSS: PartialCSS = {
-        top: `${top > 0 ? top : 0}px`,
-        left: `${left > 0 ? left : 0}px`
+        top: `${window.scrollY + top}px`,
+        left: `${window.scrollX + left}px`
     };
     applyCssToElement(controlStripCSS)(controlStrip);
     controlStrip.addEventListener("pointerdown", onDragStart);
@@ -41,5 +56,5 @@ const createControlStripElement = (mediaElement: MediaElement): HTMLSpanElement 
 };
 
 export const removeControlStrip = (chronosId: string) => {
-    document.querySelectorAll(`[data-chronos-id="${chronosId}"]`).forEach((e) => e.remove());
+    document.querySelectorAll(`${chronosControlStripTagName}[data-chronos-id="${chronosId}"]`).forEach((e) => e.remove());
 };

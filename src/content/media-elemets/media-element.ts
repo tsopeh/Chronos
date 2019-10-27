@@ -5,15 +5,26 @@ export enum MediaElementNodeName {
     audio = "audio"
 }
 
-export const getAllMediaElementsFromDocument = (doc: Document): MediaElement[] => {
-    return [...doc.getElementsByTagName("video"), ...doc.getElementsByTagName("audio")];
+export const getAllMediaElements = (element: Element): MediaElement[] => {
+    return [...element.getElementsByTagName("video"), ...element.getElementsByTagName("audio")];
 };
 
-export const getMediaElementsFromNodeList = (list: NodeList): MediaElement[] => {
-    const mediaElements: MediaElement[] = [...list].filter((node: Node) => {
+export const getMediaElementsFromNodes = (nodes: Node[]): MediaElement[] => {
+    const topLevelMediaElements: MediaElement[] = nodes.filter((node: Node) => {
         const nodeName = node.nodeName.toLowerCase();
         return nodeName === MediaElementNodeName.video || nodeName === MediaElementNodeName.audio;
     }) as MediaElement[];
 
-    return mediaElements;
+    const nestedMediaElements: MediaElement[] = nodes
+        .filter((node: Node) => node.hasChildNodes())
+        .reduce(
+            (acc: MediaElement[], node: Node): MediaElement[] => {
+                const element = node as HTMLElement;
+                acc.push(...getAllMediaElements(element));
+                return acc;
+            },
+            [] as MediaElement[]
+        );
+
+    return [...topLevelMediaElements, ...nestedMediaElements];
 };

@@ -7,8 +7,8 @@ export const onDragStart = (e: PointerEvent) => {
         if (isDefined(maybeElement)) {
             const element = maybeElement as HTMLElement;
             const originalRect = element.getBoundingClientRect();
-            const elementOriginalTop = originalRect.top;
-            const elementOriginalLeft = originalRect.left;
+            const elementOriginalTop = originalRect.top + window.scrollY;
+            const elementOriginalLeft = originalRect.left + window.scrollX;
 
             const dragStartX = e.clientX;
             const dragStartY = e.clientY;
