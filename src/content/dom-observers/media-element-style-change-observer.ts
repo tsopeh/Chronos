@@ -1,7 +1,7 @@
 import { recreateControlStrip } from "../control-strip/control-strip";
 import { MediaElement } from "../media-elemets/media-element";
 
-const onMediaElementDomMutation: MutationCallback = (mutations: MutationRecord[]) => {
+const processMediaElements: MutationCallback = (mutations: MutationRecord[]) => {
     const mutatedMediaElements = mutations.reduce(
         (acc, record: MutationRecord): MediaElement[] => {
             const mediaElement = record.target as MediaElement;
@@ -16,8 +16,8 @@ const onMediaElementDomMutation: MutationCallback = (mutations: MutationRecord[]
     mutatedMediaElements.forEach(recreateControlStrip);
 };
 
-export const observeMediaElementMutation = (mediaElement: MediaElement) => {
-    const mediaElementMutationObserver = new MutationObserver(onMediaElementDomMutation);
+export const observeMediaElementStyleChange = (mediaElement: MediaElement) => {
+    const mediaElementMutationObserver = new MutationObserver(processMediaElements);
     mediaElementMutationObserver.observe(mediaElement, {
         childList: false,
         attributes: true,

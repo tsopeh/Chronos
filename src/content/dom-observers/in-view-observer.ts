@@ -17,9 +17,9 @@ const onElementInView: IntersectionObserverCallback = (entries: IntersectionObse
     });
 };
 
-export const getMediaElementInViewObserver = (rootElement: HTMLElement): IntersectionObserver => {
+export const getObservrOfMediaElementInView = (rootElement: HTMLElement): IntersectionObserver => {
     const options: IntersectionObserverInit = {
-        /* Note: root = null means viewport*/
+        /* Note: root = null means viewport */
         root: null,
         rootMargin: "0px",
         threshold: 0

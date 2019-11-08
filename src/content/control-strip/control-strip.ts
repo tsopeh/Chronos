@@ -7,13 +7,6 @@ import "./control-strip.scss";
 export const chronosControlStripTagName = "chronos-control-strip";
 export const chronosButtonTagName = "chronos-button";
 
-export const createControlStripIfNeeded = (mediaElement: MediaElement) => {
-    const maybeChronosId = mediaElement.dataset.chronosId;
-    if (isNotDefined(maybeChronosId)) {
-        createControlStrip(mediaElement);
-    }
-};
-
 export const recreateControlStrip = (mediaElement: MediaElement) => {
     const maybeChronosId = mediaElement.dataset.chronosId;
     if (isDefined(maybeChronosId)) {
@@ -22,7 +15,7 @@ export const recreateControlStrip = (mediaElement: MediaElement) => {
     createControlStrip(mediaElement);
 };
 
-export const createControlStrip = (mediaElement: MediaElement) => {
+const createControlStrip = (mediaElement: MediaElement) => {
     const controlStrip: HTMLSpanElement = createControlStripElement(mediaElement);
     bindControlStripToMediaElement(controlStrip, mediaElement, uuid());
     document.body.appendChild(controlStrip);

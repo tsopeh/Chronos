@@ -1,21 +1,21 @@
 import { removeControlStrip } from "../control-strip/control-strip";
 import { getAllMediaElements, getMediaElementsFromNodes, MediaElement } from "../media-elemets/media-element";
-import { getMediaElementInViewObserver } from "./in-view-observer";
-import { observeMediaElementMutation } from "./media-element-mutation-observer";
+import { getObservrOfMediaElementInView as getObserverOfMediaElementsInView } from "./in-view-observer";
+import { observeMediaElementStyleChange } from "./media-element-style-change-observer";
 
-const onDomMutation = (elementInViewObserver: IntersectionObserver): MutationCallback => (mutations: MutationRecord[]) => {
+const onDomMutation = (observerOfElementsInView: IntersectionObserver): MutationCallback => (mutations: MutationRecord[]) => {
     mutations.forEach((mutation: MutationRecord) => {
         if (mutation.type === "childList") {
             const addedMediaElements: MediaElement[] = getMediaElementsFromNodes([...mutation.addedNodes]);
             addedMediaElements.forEach((mediaElement: MediaElement) => {
-                observeMediaElementMutation(mediaElement);
-                elementInViewObserver.observe(mediaElement);
+                observeMediaElementStyleChange(mediaElement);
+                observerOfElementsInView.observe(mediaElement);
             });
 
             const removedMediaElements: MediaElement[] = getMediaElementsFromNodes([...mutation.removedNodes]);
             removedMediaElements.map((element) => element.dataset.chronosId).forEach(removeControlStrip);
             removedMediaElements.forEach((element: MediaElement) => {
-                elementInViewObserver.unobserve(element);
+                observerOfElementsInView.unobserve(element);
             });
         }
     });
@@ -24,14 +24,14 @@ const onDomMutation = (elementInViewObserver: IntersectionObserver): MutationCal
 const processAlereadyExistingMediaElements = (elementInViewObserver: IntersectionObserver) => (rootElement: HTMLElement) => {
     const existingMediaElements = getAllMediaElements(rootElement);
     existingMediaElements.forEach((mediaElement: MediaElement) => {
-        observeMediaElementMutation(mediaElement);
+        observeMediaElementStyleChange(mediaElement);
         elementInViewObserver.observe(mediaElement);
     });
 };
 
-export const observeDom = (rootElement: HTMLElement) => {
-    const mediaElementInViewObserver = getMediaElementInViewObserver(rootElement);
-    processAlereadyExistingMediaElements(mediaElementInViewObserver)(rootElement);
-    const domMutationObserver = new MutationObserver(onDomMutation(mediaElementInViewObserver));
+export const observeDomMutations = (rootElement: HTMLElement) => {
+    const observerOfMediaElementsInView = getObserverOfMediaElementsInView(rootElement);
+    processAlereadyExistingMediaElements(observerOfMediaElementsInView)(rootElement);
+    const domMutationObserver = new MutationObserver(onDomMutation(observerOfMediaElementsInView));
     domMutationObserver.observe(rootElement, { childList: true, subtree: true });
 };
