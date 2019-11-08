@@ -1,6 +1,6 @@
 import { removeControlStrip } from "../control-strip/control-strip";
 import { getAllMediaElements, getMediaElementsFromNodes, MediaElement } from "../media-elemets/media-element";
-import { getInViewObserver } from "./intersection-observer";
+import { getMediaElementInViewObserver } from "./in-view-observer";
 import { observeMediaElementMutation } from "./media-element-mutation-observer";
 
 const onDomMutation = (elementInViewObserver: IntersectionObserver): MutationCallback => (mutations: MutationRecord[]) => {
@@ -30,7 +30,7 @@ const processAlereadyExistingMediaElements = (elementInViewObserver: Intersectio
 };
 
 export const observeDom = (rootElement: HTMLElement) => {
-    const mediaElementInViewObserver = getInViewObserver(rootElement);
+    const mediaElementInViewObserver = getMediaElementInViewObserver(rootElement);
     processAlereadyExistingMediaElements(mediaElementInViewObserver)(rootElement);
     const domMutationObserver = new MutationObserver(onDomMutation(mediaElementInViewObserver));
     domMutationObserver.observe(rootElement, { childList: true, subtree: true });
