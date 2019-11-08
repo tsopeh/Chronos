@@ -2,7 +2,10 @@ import { recreateControlStrip, removeControlStrip } from "../control-strip/contr
 import { MediaElement } from "../media-elemets/media-element";
 import { isDefined } from "../../common/ts-utils";
 
-const onElementInView: IntersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+const onElementInView: IntersectionObserverCallback = (
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver
+) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
         const element = entry.target as MediaElement;
         if (entry.isIntersecting) {

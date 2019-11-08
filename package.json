@@ -2,7 +2,8 @@
     "name": "chronos",
     "scripts": {
         "dev": "./copy-static-assets.sh; ./node_modules/.bin/webpack --watch",
-        "start": "web-ext run --source-dir ./dist/"
+        "start": "web-ext run --source-dir ./dist/",
+        "format-codebase": "prettier --write './src/**/*'"
     },
     "repository": {
         "type": "git",
