@@ -17,7 +17,7 @@ export const createControlStripButton = (
     buttonConfig: ControlStripButtonConfig
 ) => {
     const button = createElement(chronosButtonTagName);
-    button.innerText = buttonConfig.initialText(mediaElement);
+    button.innerHTML = buttonConfig.initialText(mediaElement);
     button.title = buttonConfig.description;
     buttonConfig.eventHandlers.forEach((eventHandler: ChronosEventHandler) => {
         eventHandler(button, mediaElement);

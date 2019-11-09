@@ -9,7 +9,7 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 mediaElement.addEventListener("ratechange", () => {
-                    buttonElement.innerText = `${mediaElement.playbackRate}x`;
+                    buttonElement.innerHTML = `${mediaElement.playbackRate}x`;
                 });
             }
         ]
@@ -46,7 +46,7 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
                     if (mediaElement.controls) {
                         buttonElement.innerHTML = "⊶".strike();
                     } else {
-                        buttonElement.innerText = "⊶";
+                        buttonElement.innerHTML = "⊶";
                     }
                 });
             }
@@ -62,7 +62,7 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
                     if (mediaElement.loop) {
                         buttonElement.innerHTML = "∞".strike();
                     } else {
-                        buttonElement.innerText = "∞";
+                        buttonElement.innerHTML = "∞";
                     }
                 });
             }
@@ -79,12 +79,12 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
             },
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 mediaElement.addEventListener("play", () => {
-                    buttonElement.innerText = "⏸";
+                    buttonElement.innerHTML = "⏸";
                 });
             },
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 mediaElement.addEventListener("pause", () => {
-                    buttonElement.innerText = "►";
+                    buttonElement.innerHTML = "►";
                 });
             }
         ]
