@@ -4,10 +4,12 @@ import { ChronosAction } from "../../actions/actions";
 
 export const chronosButtonTagName = "chronos-button";
 
+export type ChronosEventHandler = (buttonElement: HTMLElement, mediaElement: MediaElement) => void;
+
 export interface ControlStripButtonConfig {
-    action: ChronosAction;
     text: string;
     shortcut: string;
+    eventHandlers: ChronosEventHandler[];
 }
 
 export const createControlStripButton = (
@@ -17,8 +19,8 @@ export const createControlStripButton = (
     const button = createElement(chronosButtonTagName);
     button.innerText = buttonConfig.text;
     button.title = buttonConfig.shortcut;
-    button.addEventListener("click", () => {
-        buttonConfig.action(mediaElement);
+    buttonConfig.eventHandlers.forEach((eventHandler: ChronosEventHandler) => {
+        eventHandler(button, mediaElement);
     });
     return button;
 };
