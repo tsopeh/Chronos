@@ -7,8 +7,8 @@ export const chronosButtonTagName = "chronos-button";
 export type ChronosEventHandler = (buttonElement: HTMLElement, mediaElement: MediaElement) => void;
 
 export interface ControlStripButtonConfig {
-    text: string;
-    shortcut: string;
+    initialText: (mediaElement?: MediaElement) => string;
+    description: string;
     eventHandlers: ChronosEventHandler[];
 }
 
@@ -17,8 +17,8 @@ export const createControlStripButton = (
     buttonConfig: ControlStripButtonConfig
 ) => {
     const button = createElement(chronosButtonTagName);
-    button.innerText = buttonConfig.text;
-    button.title = buttonConfig.shortcut;
+    button.innerText = buttonConfig.initialText(mediaElement);
+    button.title = buttonConfig.description;
     buttonConfig.eventHandlers.forEach((eventHandler: ChronosEventHandler) => {
         eventHandler(button, mediaElement);
     });

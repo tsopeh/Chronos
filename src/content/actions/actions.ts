@@ -9,7 +9,7 @@ interface IChronosActions {
     increasePlaybackRate: ChronosAction;
     decreasePlaybackRate: ChronosAction;
     resetPlaybackRate: ChronosAction;
-    toggleNavigation: ChronosAction;
+    toggleNativeControls: ChronosAction;
     toggleLoop: ChronosAction;
     togglePlayPause: ChronosAction;
     seekForward: ChronosAction;
@@ -30,14 +30,14 @@ export const ChronosActions: IChronosActions = {
     },
 
     decreasePlaybackRate: (mediaElement: MediaElement) => {
-        setPlaybackRate(mediaElement, mediaElement.playbackRate + PLAYBACK_RATE_INCREMENT);
+        setPlaybackRate(mediaElement, mediaElement.playbackRate - PLAYBACK_RATE_INCREMENT);
     },
 
     resetPlaybackRate: (mediaElement: MediaElement) => {
         mediaElement.playbackRate = 1;
     },
 
-    toggleNavigation: (mediaElement: MediaElement) => {
+    toggleNativeControls: (mediaElement: MediaElement) => {
         mediaElement.controls = !mediaElement.controls;
     },
 

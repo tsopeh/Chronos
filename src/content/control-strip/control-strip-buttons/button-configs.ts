@@ -4,8 +4,8 @@ import { ControlStripButtonConfig } from "./control-strip-button";
 
 export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
     {
-        shortcut: "",
-        text: "1",
+        description: "Current playback rate.",
+        initialText: (mediaElement: MediaElement) => `${mediaElement.playbackRate}x`,
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 mediaElement.addEventListener("ratechange", () => {
@@ -15,8 +15,8 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         ]
     },
     {
-        shortcut: "",
-        text: "<<",
+        description: "Decrease playback rate by 0.25.",
+        initialText: () => "<<",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
@@ -26,8 +26,8 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         ]
     },
     {
-        shortcut: "",
-        text: ">>",
+        description: "Increase playback rate by 0.25.",
+        initialText: () => ">>",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
@@ -36,31 +36,25 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
             }
         ]
     },
-    // {
-    //     shortcut: "",
-    //     text: "R",
-    //     eventHandlers: [
-    //         (buttonElement: HTMLElement, mediaElement: MediaElement) => {
-    //             buttonElement.addEventListener("click", () => {
-    //                 ChronosActions.resetPlaybackRate(mediaElement);
-    //             });
-    //         }
-    //     ]
-    // },
     {
-        shortcut: "",
-        text: "⊶",
+        description: "Toggle native contols.",
+        initialText: (mediaElement: MediaElement) => (mediaElement.controls ? "⊶".strike() : "⊶"),
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
-                    ChronosActions.toggleNavigation(mediaElement);
+                    ChronosActions.toggleNativeControls(mediaElement);
+                    if (mediaElement.controls) {
+                        buttonElement.innerHTML = "⊶".strike();
+                    } else {
+                        buttonElement.innerText = "⊶";
+                    }
                 });
             }
         ]
     },
     {
-        shortcut: "",
-        text: "∞",
+        description: "Toggle loop.",
+        initialText: (mediaElement: MediaElement) => (mediaElement.loop ? "∞".strike() : "∞"),
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
@@ -75,8 +69,8 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         ]
     },
     {
-        shortcut: "",
-        text: "⏯",
+        description: "Toggle play/pause",
+        initialText: (mediaElement: MediaElement) => (mediaElement.paused ? "►" : "⏸"),
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
@@ -96,8 +90,8 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         ]
     },
     {
-        shortcut: "",
-        text: "⏪",
+        description: "Seek backward by 10 seconds.",
+        initialText: () => "⏪",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
@@ -107,8 +101,8 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         ]
     },
     {
-        shortcut: "",
-        text: "⏩",
+        description: "Seek forward by 10 seconds.",
+        initialText: () => "⏩",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
