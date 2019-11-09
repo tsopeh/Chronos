@@ -1,6 +1,7 @@
 import { MediaElement } from "../media-elemets/media-element";
 
 const PLAYBACK_RATE_INCREMENT = 0.25;
+const SEEK_INCREMENT = 10;
 
 export type ChronosAction = (mediaElement: MediaElement) => void;
 
@@ -9,11 +10,18 @@ interface IChronosActions {
     decreasePlaybackRate: ChronosAction;
     resetPlaybackRate: ChronosAction;
     toggleNavigation: ChronosAction;
+    toggleLoop: ChronosAction;
     togglePlayPause: ChronosAction;
+    seekForward: ChronosAction;
+    seekBackward: ChronosAction;
 }
 
 const setPlaybackRate = (mediaElement: MediaElement, plabackRate: number) => {
     mediaElement.playbackRate = plabackRate;
+};
+
+const setCurrentTime = (mediaElement: MediaElement, seekTime: number) => {
+    mediaElement.currentTime = seekTime;
 };
 
 export const ChronosActions: IChronosActions = {
@@ -39,5 +47,14 @@ export const ChronosActions: IChronosActions = {
         } else {
             mediaElement.pause();
         }
+    },
+    toggleLoop: (mediaElement: MediaElement) => {
+        mediaElement.loop = !mediaElement.loop;
+    },
+    seekForward: (mediaElement: MediaElement) => {
+        setCurrentTime(mediaElement, mediaElement.currentTime + SEEK_INCREMENT);
+    },
+    seekBackward: (mediaElement: MediaElement) => {
+        setCurrentTime(mediaElement, mediaElement.currentTime - SEEK_INCREMENT);
     }
 };

@@ -36,20 +36,20 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
             }
         ]
     },
+    // {
+    //     shortcut: "",
+    //     text: "R",
+    //     eventHandlers: [
+    //         (buttonElement: HTMLElement, mediaElement: MediaElement) => {
+    //             buttonElement.addEventListener("click", () => {
+    //                 ChronosActions.resetPlaybackRate(mediaElement);
+    //             });
+    //         }
+    //     ]
+    // },
     {
         shortcut: "",
-        text: "R",
-        eventHandlers: [
-            (buttonElement: HTMLElement, mediaElement: MediaElement) => {
-                buttonElement.addEventListener("click", () => {
-                    ChronosActions.resetPlaybackRate(mediaElement);
-                });
-            }
-        ]
-    },
-    {
-        shortcut: "",
-        text: "T",
+        text: "⊶",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
@@ -60,7 +60,23 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
     },
     {
         shortcut: "",
-        text: "play/pause",
+        text: "∞",
+        eventHandlers: [
+            (buttonElement: HTMLElement, mediaElement: MediaElement) => {
+                buttonElement.addEventListener("click", () => {
+                    ChronosActions.toggleLoop(mediaElement);
+                    if (mediaElement.loop) {
+                        buttonElement.innerHTML = "∞".strike();
+                    } else {
+                        buttonElement.innerText = "∞";
+                    }
+                });
+            }
+        ]
+    },
+    {
+        shortcut: "",
+        text: "⏯",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 buttonElement.addEventListener("click", () => {
@@ -69,12 +85,34 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
             },
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 mediaElement.addEventListener("play", () => {
-                    buttonElement.innerText = "pause";
+                    buttonElement.innerText = "⏸";
                 });
             },
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
                 mediaElement.addEventListener("pause", () => {
-                    buttonElement.innerText = "play";
+                    buttonElement.innerText = "►";
+                });
+            }
+        ]
+    },
+    {
+        shortcut: "",
+        text: "⏪",
+        eventHandlers: [
+            (buttonElement: HTMLElement, mediaElement: MediaElement) => {
+                buttonElement.addEventListener("click", () => {
+                    ChronosActions.seekBackward(mediaElement);
+                });
+            }
+        ]
+    },
+    {
+        shortcut: "",
+        text: "⏩",
+        eventHandlers: [
+            (buttonElement: HTMLElement, mediaElement: MediaElement) => {
+                buttonElement.addEventListener("click", () => {
+                    ChronosActions.seekForward(mediaElement);
                 });
             }
         ]
