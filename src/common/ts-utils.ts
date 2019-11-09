@@ -26,3 +26,12 @@ export const uuid = () => {
         ).toString(16)
     );
 };
+
+export const preventDefaultAndPropagation = (element: Element, events: string[]) => {
+    events.forEach((eventName: string) => {
+        element.addEventListener(eventName, (e: Event) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+};
