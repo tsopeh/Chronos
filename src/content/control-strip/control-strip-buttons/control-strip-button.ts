@@ -1,6 +1,5 @@
-import { MediaElement } from "../../media-elemets/media-element";
 import { createElement } from "../../content";
-import { ChronosAction } from "../../actions/actions";
+import { MediaElement } from "../../media-elemets/media-element";
 
 export const chronosButtonTagName = "chronos-button";
 
