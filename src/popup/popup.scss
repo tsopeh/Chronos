@@ -1,7 +1,55 @@
-body {
+* {
     margin: 0px;
     padding: 0px;
-    font-size: 5vh;
+    box-sizing: border-box;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 280px;
+    height: 450px;
+    background-color: #0073c0;
+
+    header {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .circle-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        border: 10px solid #ff8800;
+
+        .chronos-logo-image {
+            width: 180px;
+            height: 180px;
+        }
+    }
+
+    .authors-message {
+        color: #ffffff;
+        background-color: #ff8800;
+        text-align: center;
+        padding: 10px 0px;
+        width: 100%;
+
+        .love a:link,
+        a:visited {
+            color: #ffffff;
+        }
+
+        a:hover {
+            color: #dc143c;
+        }
+    }
 }
 
 a:link,
@@ -10,44 +58,5 @@ a:visited {
     text-decoration: none;
 }
 a:hover {
-    color: #ffffff;
-}
-
-header {
-    width: 100vw;
-    height: 10vh;
-    background-color: teal;
-}
-
-article {
-    margin-bottom: 10vh;
-}
-
-article h1 {
-    margin-left: 5vw;
-}
-
-.credits {
-    width: 100vw;
-    height: 7vh;
-    font-size: 4vh;
-    margin-left: 15vw;
-}
-
-footer {
-    width: 100vw;
-    height: 7vh;
-    background-color: teal;
-    position: fixed;
-    bottom: 0vh;
-    text-decoration: none;
-}
-
-footer div {
-    margin-left: 5vw;
-}
-
-.love a:link,
-a:visited {
     color: #ffffff;
 }
