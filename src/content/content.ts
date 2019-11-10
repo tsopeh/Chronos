@@ -2,8 +2,11 @@ import { documentCreateElement } from "../common/ts-utils";
 import { observeDomMutations } from "./dom-observers/new-media-element-observer";
 import { getAllMediaElements, MediaElement } from "./media-elemets/media-element";
 import { ChronosAction, ChronosActions } from "./actions/actions";
+import { DECREASE_PLAYBACK_RATE_KEY, INCREASE_PLAYBACK_RATE_KEY, ACTIVATION_KEY } from "../common/shortcut-keys";
 
 export const createElement = documentCreateElement(document);
+
+
 
 const registerGlobalShortcuts = (doc: Document) => {
     const isActivationKeyPressed = (event: KeyboardEvent): boolean => event.altKey;
@@ -11,9 +14,6 @@ const registerGlobalShortcuts = (doc: Document) => {
     const executeActionOnElements = (mediaElements: MediaElement[]) => (action: ChronosAction) => {
         mediaElements.forEach(action);
     };
-
-    const INCREASE_PLAYBACK_RATE_KEY = "Period";
-    const DECREASE_PLAYBACK_RATE_KEY = "Comma";
 
     doc.addEventListener("keydown", (event: KeyboardEvent) => {
         const mediaElements: MediaElement[] = getAllMediaElements(doc.body);

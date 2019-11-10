@@ -1,3 +1,8 @@
+import {
+    ACTIVATION_KEY,
+    DECREASE_PLAYBACK_RATE_KEY,
+    INCREASE_PLAYBACK_RATE_KEY
+} from "../../../common/shortcut-keys";
 import { ChronosActions } from "../../actions/actions";
 import { MediaElement } from "../../media-elemets/media-element";
 import { ControlStripButtonConfig } from "./control-strip-button";
@@ -15,7 +20,7 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         ]
     },
     {
-        description: "Decrease playback rate by 0.25.",
+        description: `Decrease playback rate by 0.25. (${ACTIVATION_KEY}+${DECREASE_PLAYBACK_RATE_KEY})`,
         initialText: () => "<<",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
@@ -26,7 +31,7 @@ export const controlStripButtonConfigs: ControlStripButtonConfig[] = [
         ]
     },
     {
-        description: "Increase playback rate by 0.25.",
+        description: `Increase playback rate by 0.25. (${ACTIVATION_KEY}+${INCREASE_PLAYBACK_RATE_KEY})`,
         initialText: () => ">>",
         eventHandlers: [
             (buttonElement: HTMLElement, mediaElement: MediaElement) => {
